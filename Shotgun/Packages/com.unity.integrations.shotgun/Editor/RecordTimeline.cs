@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditor.Recorder;
 using System.Reflection;
 
-public class RecordTimeline
+public static class RecordTimeline
 {
     private static string m_origFilePath = null;
     private static MovieRecorderSettings m_recorderSettings = null;
