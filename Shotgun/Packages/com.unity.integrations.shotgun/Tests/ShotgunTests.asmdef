@@ -1,0 +1,19 @@
+{
+    "name": "ShotgunTests",
+    "references": [
+        "Unity.Integrations.Shotgun",
+        "Unity.Scripting.Python.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
