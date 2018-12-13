@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Integrations.Shotgun;
 using UnityEditor.Scripting.Python;
 using UnityEngine;
 using UnityEngine.TestTools;
