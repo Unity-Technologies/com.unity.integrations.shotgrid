@@ -10,7 +10,7 @@ using UnityEngine.TestTools;
 
 namespace Tests
 {
-    public class ShotgunTests
+    internal class ShotgunTests
     {
         private static string TestsPath = Path.Combine(Path.GetFullPath("Packages/com.unity.integrations.shotgun"), "Tests");
 
