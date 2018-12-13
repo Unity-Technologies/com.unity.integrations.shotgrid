@@ -36,8 +36,8 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
-	"com.unity.package-validation-suite": "0.4.0-preview.12",
-	"com.unity.package-manager-doctools": "1.0.0-preview.20"
+    "com.unity.package-validation-suite": "0.4.0-preview.12",
+    "com.unity.package-manager-doctools": "1.0.0-preview.20"
   },
   "registry": "https://staging-packages.unity.com"
 }
