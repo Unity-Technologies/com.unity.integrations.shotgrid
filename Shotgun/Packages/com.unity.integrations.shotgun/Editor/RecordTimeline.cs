@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace UnityEditor.Integrations.Shotgun
 {
-    public static class RecordTimeline
+    internal static class RecordTimeline
     {
         private static string s_origFilePath = null;
         private static MovieRecorderSettings s_recorderSettings = null;
