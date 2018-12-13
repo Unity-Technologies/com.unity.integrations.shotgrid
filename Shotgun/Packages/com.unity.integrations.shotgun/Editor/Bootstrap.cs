@@ -17,6 +17,7 @@ namespace UnityEditor.Integrations.Shotgun
         /// Starts the Unity server, then bootstraps Shotgun on the Unity client
         /// </summary>
         public static void CallBootstrap()
+        {
             // Use the engine's rpyc client script
             string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
             string clientInitModulePath = Path.GetDirectoryName(bootstrapScript);
@@ -35,6 +36,7 @@ namespace UnityEditor.Integrations.Shotgun
             // Then bootstrap Shotgun on the client
             PythonRunner.CallServiceOnClient("'bootstrap_shotgun'", string.Format("'{0}'", bootstrapScript));
         }
+
         /// <summary>
         /// Bootstraps Shotgun when the domain is loaded
         /// </summary>
