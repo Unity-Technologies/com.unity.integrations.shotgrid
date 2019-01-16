@@ -67,6 +67,11 @@ namespace UnityEditor.Integrations.Shotgun
             }
         }
 
+        /// <summary>
+        /// Returns a deterministic path based on the project name
+        /// e.g. %TEMP%\Unity_Project_Name for the Windows platform
+        /// </summary>
+        /// <returns>The path</returns>
         private static string GetTempFilePath()
         {
             // store to a temporary path, to delete after publish
@@ -82,7 +87,7 @@ namespace UnityEditor.Integrations.Shotgun
         {
             if (IsRecording)
             {
-                // Domain reloads loses the overriden Recorder path. We know a 
+                // Domain reloads lose the overriden Recorder path. We know a 
                 // domain reload occurred if m_origFilePath is not set (cleared 
                 // by a domain reload)
                 if (null == s_origFilePath)
