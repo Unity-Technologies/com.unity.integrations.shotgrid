@@ -32,6 +32,13 @@ namespace UnityEditor.Integrations.Shotgun
 
             RecorderPath = GetTempFilePath();
 
+            // Delete the temp file if it already exists
+            string fullFilePath = RecorderPath + ".mp4";
+            if (System.IO.File.Exists(fullFilePath))
+            {
+                System.IO.File.Delete(fullFilePath);
+            }
+
             EditorApplication.playModeStateChanged += OnPlayModeStateChange;
 
             StartRecording();
@@ -60,6 +67,11 @@ namespace UnityEditor.Integrations.Shotgun
             }
         }
 
+        /// <summary>
+        /// Returns a deterministic path based on the project name
+        /// e.g. %TEMP%\Unity_Project_Name for the Windows platform
+        /// </summary>
+        /// <returns>The path</returns>
         private static string GetTempFilePath()
         {
             // store to a temporary path, to delete after publish
