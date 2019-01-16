@@ -32,6 +32,13 @@ namespace UnityEditor.Integrations.Shotgun
 
             RecorderPath = GetTempFilePath();
 
+            // Delete the temp file if it already exists
+            string fullFilePath = RecorderPath + ".mp4";
+            if (System.IO.File.Exists(fullFilePath))
+            {
+                System.IO.File.Delete(fullFilePath);
+            }
+
             EditorApplication.playModeStateChanged += OnPlayModeStateChange;
 
             StartRecording();
@@ -75,7 +82,7 @@ namespace UnityEditor.Integrations.Shotgun
         {
             if (IsRecording)
             {
-                // Domain reloads lose the overriden Recorder path. We know a 
+                // Domain reloads loses the overriden Recorder path. We know a 
                 // domain reload occurred if m_origFilePath is not set (cleared 
                 // by a domain reload)
                 if (null == s_origFilePath)
