@@ -34,7 +34,7 @@ namespace Tests
             PythonRunner.RunFileOnClient(standaloneScript);
 
             // Give the script some time to publish
-            yield return Wait(5000);
+            yield return Wait(10000);
 
             // Upon success, the Python script creates a game object named 
             // after the product name
