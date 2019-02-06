@@ -20,5 +20,8 @@ def parseMetadata():
     
     # open the correct scene in Unity
     UnityEditor.SceneManagement.EditorSceneManager.OpenScene(unity_metadata["scenePath"])
+    
+    # now that we have set the scene, remove the environment variable
+    os.environ.pop("SHOTGUN_UNITY_METADATA")
 
 parseMetadata()
