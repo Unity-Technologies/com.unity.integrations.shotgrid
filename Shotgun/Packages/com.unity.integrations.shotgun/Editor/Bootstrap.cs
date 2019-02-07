@@ -33,6 +33,9 @@ namespace UnityEditor.Integrations.Shotgun
             // (which is triggered by domain unload)
             PythonEngine.AddShutdownHandler(OnPythonShutdown);
 
+            // We need to clean-up on quit
+            EditorApplication.quitting += DeleteShotgunAssetDir;
+
             // Then bootstrap Shotgun on the client
             PythonRunner.CallServiceOnClient("'bootstrap_shotgun'", string.Format("'{0}'", bootstrapScript));
         }
@@ -55,10 +58,32 @@ namespace UnityEditor.Integrations.Shotgun
             PythonEngine.RemoveShutdownHandler(OnPythonShutdown);
         }
 
+        /// <summary>
+        /// Tries to remove Assets/Shotgun
+        /// </summary>
+        private static void DeleteShotgunAssetDir()
+        {
+            string shotgunAssetPath = UnityEngine.Application.dataPath + "/Shotgun";
+            if (Directory.Exists(shotgunAssetPath))
+            {
+                try
+                {
+                    Directory.Delete(shotgunAssetPath, true);
+                }
+                catch (IOException ex)
+                {
+                    Debug.LogWarning(string.Format("Could not delete the Shotgun Asset Directory located at {}",shotgunAssetPath));
+                }
+            }
+        }
+
 #if DEBUG
         [MenuItem("Shotgun/Debug/Bootstrap Engine")]
         private static void CallBootstrapEngine()
         {
+            // Stop the server (and client)
+            PythonRunner.StopServer(true);
+
             CallBootstrap();
         }
 
