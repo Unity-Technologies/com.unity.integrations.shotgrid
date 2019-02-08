@@ -1,6 +1,7 @@
 import os
 import json
 import UnityEditor
+import UnityEngine
 
 def parseMetadata():
     # get meta data from the environment variable
@@ -20,6 +21,26 @@ def parseMetadata():
     
     # open the correct scene in Unity
     UnityEditor.SceneManagement.EditorSceneManager.OpenScene(unity_metadata["scenePath"])
+    
+    if unity_metadata.has_key('frameNumber'):
+        UnityEditor.EditorApplication.ExecuteMenuItem("Window/Sequencing/Timeline")
+        
+        playableDirectors = UnityEngine.Object.FindObjectsOfType[UnityEngine.Playables.PlayableDirector]()
+        if playableDirectors and len(playableDirectors) > 0:
+            frameNumber = int(unity_metadata["frameNumber"])
+            try:
+                playableDirector = playableDirectors[0] # just take the first one
+                
+                timeline = playableDirector.playableAsset
+                
+                fps = timeline.editorSettings.fps
+                playableDirector.time = frameNumber / fps
+                
+                # focus on the PlayableDirector in the Timeline window
+                UnityEditor.Selection.activeObject = playableDirector;
+            except Exception, e:
+                UnityEngine.Debug.LogWarning("Unable to focus on Timeline: " + str(e))
+            
     
     # now that we have set the scene, remove the environment variable
     os.environ.pop("SHOTGUN_UNITY_METADATA")
