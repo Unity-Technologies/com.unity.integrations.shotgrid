@@ -7,12 +7,12 @@ public static class LoadMetadata
 {
     static LoadMetadata()
     {
-        EditorApplication.update += RunPythonScript;
+        EditorApplication.delayCall += RunPythonScript;
     }
 
     private static void RunPythonScript()
     {
-        EditorApplication.update -= RunPythonScript;
-        PythonRunner.RunFile(System.IO.Path.Combine(Application.dataPath, "ShotgunMetadata/parseMetadata.py"));
+        PythonRunner.RunFileOnClient(System.IO.Path.Combine(Application.dataPath, "ShotgunMetadata/parseMetadata.py"));
     }
+
 }
