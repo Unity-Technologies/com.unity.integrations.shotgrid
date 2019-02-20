@@ -59,7 +59,7 @@
       automatic_context_switch: false
     ```
 
-5. In a env/includes/settings/tk-multi-breakdown.yml, add the following:
+5. In env/includes/settings/tk-multi-breakdown.yml, add the following:
     ```
     settings.tk-multi-breakdown.unity:
       hook_scene_operations: "{engine}/tk-multi-breakdown/tk-unity_scene_operations.py"
