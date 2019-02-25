@@ -18,15 +18,13 @@ namespace UnityEditor.Integrations.Shotgun
         /// </summary>
         public static void CallBootstrap()
         {
-            // Use the engine's rpyc client script
-            string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
-            
-            if (bootstrapScript == null)
+            if (!EnsureShotgunIsPresent())
             {
-                // Unity was not lauched from Shotgun. Log warning and exit early
-                Debug.LogWarning("The Shotgun package is present in the project but Unity was not launched from Shotgun. Shotgun features will not be available.");
                 return;
             }
+
+            // Use the engine's rpyc client script
+            string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
 
             string clientInitModulePath = Path.GetDirectoryName(bootstrapScript);
             clientInitModulePath = Path.Combine(clientInitModulePath,ClientInitModuleFileName);
@@ -46,6 +44,27 @@ namespace UnityEditor.Integrations.Shotgun
 
             // Then bootstrap Shotgun on the client
             PythonRunner.CallServiceOnClient("'bootstrap_shotgun'", string.Format("'{0}'", bootstrapScript));
+        }
+
+        /// <summary>
+        /// Checks if Unity was launched from Shotgun. If not, issues a 
+        /// warning and removes the Assets/Shotgun directory
+        /// 
+        /// Returns true if Shotgun is present, false otherwise
+        /// </summary>
+        internal static bool EnsureShotgunIsPresent()
+        {
+            if (System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION") == null)
+            {
+                // Unity was not lauched from Shotgun. Log warning and exit early
+                Debug.LogWarning("The Shotgun package is present in the project but Unity was not launched from Shotgun. Shotgun features will not be available.");
+
+                // Remove the Shotgun menu
+                DeleteShotgunAssetDir();
+                AssetDatabase.Refresh();
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -91,19 +110,7 @@ namespace UnityEditor.Integrations.Shotgun
         {
             // Stop the server (and client)
             PythonRunner.StopServer(true);
-
             CallBootstrap();
-        }
-
-        [MenuItem("Shotgun/Debug/Print Engine Envs")]
-        private static void CallPrintEnv()
-        {
-            string[] envs = { "SHOTGUN_UNITY_BOOTSTRAP_LOCATION","BOOTSTRAP_SG_ON_UNITY_STARTUP",};
-
-            foreach(string env in envs)
-            {
-                UnityEngine.Debug.Log(env + ": " + System.Environment.GetEnvironmentVariable(env));
-            }
         }
 #endif
     }

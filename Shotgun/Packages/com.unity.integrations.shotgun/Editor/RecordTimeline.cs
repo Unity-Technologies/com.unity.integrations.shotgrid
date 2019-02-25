@@ -26,6 +26,11 @@ namespace UnityEditor.Integrations.Shotgun
         [MenuItem("Shotgun/Record Timeline")]
         private static void Record()
         {
+            if (!Bootstrap.EnsureShotgunIsPresent())
+            {
+                return;
+            }
+
             IsRecording = true;
 
             s_origFilePath = RecorderPath;
