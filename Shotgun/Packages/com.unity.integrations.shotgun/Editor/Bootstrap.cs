@@ -23,7 +23,8 @@ namespace UnityEditor.Integrations.Shotgun
             
             if (bootstrapScript == null)
             {
-                // Unity was not lauched from Shotgun. Exit early
+                // Unity was not lauched from Shotgun. Log warning and exit early
+                Debug.LogWarning("The Shotgun package is present in the project but Unity was not launched from Shotgun. Shotgun features will not be available.");
                 return;
             }
 
