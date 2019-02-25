@@ -20,6 +20,14 @@ namespace UnityEditor.Integrations.Shotgun
         {
             // Use the engine's rpyc client script
             string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
+            
+            if (bootstrapScript == null)
+            {
+                // Unity was not lauched from Shotgun. Log warning and exit early
+                Debug.LogWarning("The Shotgun package is present in the project but Unity was not launched from Shotgun. Shotgun features will not be available.");
+                return;
+            }
+
             string clientInitModulePath = Path.GetDirectoryName(bootstrapScript);
             clientInitModulePath = Path.Combine(clientInitModulePath,ClientInitModuleFileName);
 
