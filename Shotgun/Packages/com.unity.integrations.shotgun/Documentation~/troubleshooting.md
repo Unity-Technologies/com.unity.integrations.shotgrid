@@ -6,3 +6,8 @@ In case you are blocked, please send the following data to us (#devs-shotgun):
 * Your Unity Editor log
 * The contents of %APPDATA%/Shotgun/Logs
 * The content of the Python console running python.exe (client)
+* * Option 1: paste the content of the console if available
+* * Option 2: set UNITY_PYTHON_CLIENT_LOGFILE in the environment prior to launching Shotgun Desktop then send the file contents. E.g.:
+```
+set UNITY_PYTHON_CLIENT_LOGFILE=d:\temp\mylog.txt
+```
