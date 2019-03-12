@@ -99,7 +99,7 @@ namespace UnityEditor.Integrations.Shotgun
                 }
                 catch (IOException ex)
                 {
-                    Debug.LogWarning(string.Format("Could not delete the Shotgun Asset Directory located at {}",shotgunAssetPath));
+                    Debug.LogWarning(string.Format("Could not delete the Shotgun Asset Directory located at {0}",shotgunAssetPath));
                 }
             }
         }

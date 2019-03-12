@@ -1,10 +1,10 @@
 # Preparing a Unity project for Shotgun
 
-You will need to add the Shotgun package to your Unity project’s Packages/manifest.json file, like so:
+You will need to add the Shotgun package to your Unity project's Packages/manifest.json file, like so:
 ```
 {
   "dependencies": {
-    "com.unity.integrations.shotgun": "0.2.0-preview"
+    "com.unity.integrations.shotgun": "0.3.0-preview"
   },
   "registry": "https://staging-packages.unity.com"
 }
@@ -16,6 +16,7 @@ Please use the Shotgun package version corresponding to your configuration versi
 
 | tk-config-unity version | com.unity.integrations.shotgun version |
 | :---------------------- | :------------------------------------- |
+| 1.2.1.1                 | 0.3.0-preview                          |
 | 1.1.15.2                | 0.2.0-preview                          |
 | 1.1.15.1                | 0.1.0-preview                          |
    
