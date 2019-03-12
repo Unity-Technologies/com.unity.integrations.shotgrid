@@ -4,7 +4,8 @@ You will need to add the Shotgun package to your Unity project's Packages/manife
 ```
 {
   "dependencies": {
-    "com.unity.integrations.shotgun": "0.3.0-preview"
+    "com.unity.integrations.shotgun": "0.3.0-preview",
+	[...]
   },
   "registry": "https://staging-packages.unity.com"
 }
