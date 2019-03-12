@@ -2,6 +2,14 @@
 
 RELEASE NOTES
 
+## [0.3.0-preview] - 2019-03-14
+NEW FEATURES
+* Addition of a progress bar to the bootstrapping process.
+* A warning is now issued upon launch outside of the expected Shotgun environment.
+FIXES
+* Improved handling of the Shotgun asset folder following an unexpected termination of Unity.
+* Improved handling of the Publish window.
+
 ## [0.2.0-preview] - 2018-12-14
 NEW FEATURES
 * Added documentation on the Shotgun menu (user manual)
