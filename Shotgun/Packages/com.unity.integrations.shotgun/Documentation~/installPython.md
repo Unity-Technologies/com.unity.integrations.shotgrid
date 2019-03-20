@@ -12,7 +12,19 @@ The Python interpreter should be in a location listed in the PATH environment va
     * pip.exe install PySide
     * pip.exe install rpyc
 
-## Mac and Linux TBD
+## Mac TBD
+
+## Linux
+**Caveats** :
+1. The shotgun integration doesn't work with the python package `python27-python-2.7.13-5` provided from the software collections
+2. The integration uses Qt4.8 (and therefore, PySide1)
+  
+* Install PySide and rpyc
+    * pip install rpyc
+    * yum install python2-pyside
+        *  Also installable from pip, but it requires the `qt-devel` package
+
+Virtual environments also supported
 
 ## Validation
 To verify that your Python interpreter is properly configured, follow these steps:
@@ -31,36 +43,36 @@ Copy the following code in a Python script (e.g. validate_python.py) and run it,
 import sys
 # Python version (expected: 2.7 64 bit)
 try:
-	import platform
-	version = platform.python_version()
-	tokens = version.split('.')
+    import platform
+    version = platform.python_version()
+    tokens = version.split('.')
 
-	if len(tokens) < 2 or int(tokens[0]) != 2 or int(tokens[1]) != 7:
-		print('ERROR: invalid Python version. Expected 2.7.x, got %s'%version)
-		sys.exit(1)
-	
-	(bits,_) = platform.architecture()
-	if bits != '64bit':
-		print('ERROR: invalid architecture. Expected "64bit", got "%s"'%bits)
-		sys.exit(1)
-	
+    if len(tokens) < 2 or int(tokens[0]) != 2 or int(tokens[1]) != 7:
+        print('ERROR: invalid Python version. Expected 2.7.x, got %s'%version)
+        sys.exit(1)
+    
+    (bits,_) = platform.architecture()
+    if bits != '64bit':
+        print('ERROR: invalid architecture. Expected "64bit", got "%s"'%bits)
+        sys.exit(1)
+    
 except:
-	print('ERROR: could not determine the Python version')
-	sys.exit(1)
+    print('ERROR: could not determine the Python version')
+    sys.exit(1)
 
 # PySide 
 try:
-	import PySide
+    import PySide
 except:
-	print('ERROR: could not import PySide')
-	sys.exit(1)
+    print('ERROR: could not import PySide')
+    sys.exit(1)
 
 # rpyc
 try:
-	import rpyc
+    import rpyc
 except:
-	print('ERROR: could not import rpyc')
-	sys.exit(1)
-	
+    print('ERROR: could not import rpyc')
+    sys.exit(1)
+    
 print('SUCCESS: The Python interpreter is properly configured for Shotgun in Unity')
 ```
