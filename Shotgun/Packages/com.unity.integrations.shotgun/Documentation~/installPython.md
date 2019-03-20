@@ -24,8 +24,6 @@ The Python interpreter should be in a location listed in the PATH environment va
     * yum install python2-pyside
         *  Also installable from pip, but it requires the `qt-devel` package
 
-Virtual environments also supported
-
 ## Validation
 To verify that your Python interpreter is properly configured, follow these steps:
 * Launch a command prompt/shell
