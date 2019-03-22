@@ -26,12 +26,11 @@ progress bar reporting the Shotgun toolkit bootstrap progress:
 
 ![Toolkit Progress Bar](images/toolkit_progress_bar.png)
 
-Once the progress bar disappears, you can now use the Shotgun menu applications. 
-Note that windows tend to pop up behind the Unity window. 
+Once the progress bar disappears, you can use the Shotgun menu applications. 
 
-Also note that a Shotgun folder will be created under your Unity project's 
+Note that a Shotgun folder will be created under your Unity project's 
 Assets folder. This Shotgun folder will automatically be deleted when Unity 
-exits. Do not use the Assets/Shotgun folder to store your files, and do not 
+exits. Do not use the `Assets/Shotgun` folder to store your files, and do not 
 modify its content.
 
 It is recommended to disable Debug Logging in order to get better performance 
