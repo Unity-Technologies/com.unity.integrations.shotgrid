@@ -14,10 +14,9 @@ The Python interpreter should be in a location listed in the PATH environment va
 
 ## Mac TBD
 
-## Linux
+## CentOS7
 **Caveats** :
-1. The shotgun integration doesn't work with the python package `python27-python-2.7.13-5` provided from the software collections
-2. The integration uses Qt4.8 (and therefore, PySide1)
+The shotgun integration doesn't work with the python package `python27-python-2.7.13-5` provided from the software collections
   
 * Install PySide and rpyc
     * pip install rpyc
