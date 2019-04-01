@@ -50,7 +50,8 @@
 
         tk-multi-loader2: "@settings.tk-multi-loader2.unity"
 
-        tk-multi-shotgunpanel: "@apps.tk-multi-shotgunpanel.location"
+        tk-multi-shotgunpanel:
+          location: "@apps.tk-multi-shotgunpanel.location"
 
         tk-multi-pythonconsole:
           location: "@apps.tk-multi-pythonconsole.location"
