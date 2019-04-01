@@ -4,7 +4,7 @@
 2. Add the following section:
     ```
     # Unity
-    engines.tk-unity.location:
+    Engines.tk-unity.location:
       type: dev
       path: '{CONFIG_FOLDER}/tk-unity'
     ```
@@ -14,9 +14,7 @@
 3. Edit env/project.yml
 
     Add this to the includes section:
-	```
-        - ./includes/settings/tk-unity.yml
-	```
+        * ./includes/settings/tk-unity.yml
         
   Also add the tk-unity engine under engines:
     
@@ -64,7 +62,7 @@
 5. In env/includes/settings/tk-multi-breakdown.yml, add the following:
     ```
     settings.tk-multi-breakdown.unity:
-      hook_scene_operations: '{engine}/tk-multi-breakdown/tk-unity_scene_operations.py'
+      hook_scene_operations: "{engine}/tk-multi-breakdown/tk-unity_scene_operations.py"
       location: "@apps.tk-multi-breakdown.location"
     ```
 
