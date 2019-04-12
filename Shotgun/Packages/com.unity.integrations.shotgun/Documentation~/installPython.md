@@ -16,7 +16,7 @@ The Python interpreter should be in a location listed in the PATH environment va
 
 ## CentOS7
 **Caveats** :
-The shotgun integration doesn't work with the Python package `python27-python-2.7.13-5` provided from the software collections
+The Shotgun integration doesn't work with the Python package `python27-python-2.7.13-5` provided from the software collections
   
 * Install PySide and RPyC
     * pip install rpyc
