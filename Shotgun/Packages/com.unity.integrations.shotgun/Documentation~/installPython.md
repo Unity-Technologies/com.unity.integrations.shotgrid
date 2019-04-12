@@ -7,7 +7,7 @@ The Shotgun integration for Unity requires that you have Python installed with s
 https://www.python.org/ftp/python/2.7.15/python-2.7.15.amd64.msi
 
 The Python interpreter should be in a location listed in the PATH environment variable.
-* Install PySide and rpyc
+* Install PySide and RPyC
     * In a command prompt, go to c:\Python27\Scripts
     * pip.exe install PySide
     * pip.exe install rpyc
@@ -16,9 +16,9 @@ The Python interpreter should be in a location listed in the PATH environment va
 
 ## CentOS7
 **Caveats** :
-The shotgun integration doesn't work with the python package `python27-python-2.7.13-5` provided from the software collections
+The shotgun integration doesn't work with the Python package `python27-python-2.7.13-5` provided from the software collections
   
-* Install PySide and rpyc
+* Install PySide and RPyC
     * pip install rpyc
     * yum install python2-pyside
         *  Also installable from pip, but it requires the `qt-devel` package
