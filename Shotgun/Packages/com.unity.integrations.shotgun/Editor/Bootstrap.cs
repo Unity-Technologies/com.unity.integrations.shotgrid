@@ -1,4 +1,5 @@
-﻿//#define DEBUG
+﻿// #define DEBUG_SHOTGUN
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -104,7 +105,7 @@ namespace UnityEditor.Integrations.Shotgun
             }
         }
 
-#if DEBUG
+#if DEBUG_SHOTGUN
         [MenuItem("Shotgun/Debug/Bootstrap Engine")]
         private static void CallBootstrapEngine()
         {
