@@ -12,7 +12,7 @@ Before starting make sure your scene and Timeline are setup for recording the pl
 
 ![Publish to Shotgun Checkbox](images/unity_recorder.png)
 
-3. From the Unity menu, select Shotgun/Record Timeline. Unity will start recording, using the movie recorder that is currently selected in the Recorder window. If no movie recorder is selected, Unity will try to find a movie recorder named "Shotgun". By default, Unity will use the last movie recorder it finds
+3. From the Unity menu, select "Shotgun/Publish Recording...". Unity will start recording, using the movie recorder that is currently selected in the Recorder window. If no movie recorder is selected, Unity will try to find a movie recorder named "Shotgun". By default, Unity will use the last movie recorder it finds
 
 4. Once the playblast finishes recording, and the editor exits playmode, the Shotgun Publish window will automatically open, showing the session recording ready to upload
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEditor;
 using UnityEditor.Recorder;
+using UnityEditor.Scripting.Python;
 using System.Reflection;
 
 namespace UnityEditor.Integrations.Shotgun
@@ -23,7 +23,7 @@ namespace UnityEditor.Integrations.Shotgun
             }
         }
 
-        [MenuItem("Shotgun/Record Timeline")]
+        [MenuItem("Shotgun/Publish Recording...")]
         private static void Record()
         {
             if (!Bootstrap.EnsureShotgunIsPresent())
@@ -103,7 +103,9 @@ namespace UnityEditor.Integrations.Shotgun
 
                 if (state == PlayModeStateChange.EnteredEditMode)
                 {
-                    EditorApplication.ExecuteMenuItem("Shotgun/Publish...");
+                    // Publish with Shotgun
+                    PythonRunner.RunStringOnClient("import sgtk");
+                    PythonRunner.RunStringOnClient("sgtk.platform.current_engine().call_menu_item_callback(\"Publish...\")");
 
                     EditorApplication.playModeStateChanged -= OnPlayModeStateChange;
                     RecorderPath = s_origFilePath;
