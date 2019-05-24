@@ -1,4 +1,4 @@
-﻿// #define DEBUG_SHOTGUN
+﻿ #define DEBUG_SHOTGUN
 
 using System.Collections;
 using System.Collections.Generic;
@@ -98,7 +98,7 @@ namespace UnityEditor.Integrations.Shotgun
                 {
                     Directory.Delete(shotgunAssetPath, true);
                 }
-                catch (IOException ex)
+                catch (IOException)
                 {
                     Debug.LogWarning(string.Format("Could not delete the Shotgun Asset Directory located at {0}",shotgunAssetPath));
                 }
