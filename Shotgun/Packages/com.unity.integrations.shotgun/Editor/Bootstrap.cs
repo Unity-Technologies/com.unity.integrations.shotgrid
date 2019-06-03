@@ -66,7 +66,7 @@ namespace UnityEditor.Integrations.Shotgun
             PythonRunner.RunStringOnClient(@"
 import sgtk
 engine = sgtk.platform.current_engine()
-engine.execute_hook_method('post_init_hook', 'on_post_init', engine = engine)
+engine.execute_hook_method('post_init_hook', 'on_post_init')
 ");
         }
 
