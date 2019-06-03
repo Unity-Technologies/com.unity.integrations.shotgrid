@@ -48,6 +48,29 @@ namespace UnityEditor.Integrations.Shotgun
         }
 
         /// <summary>
+        /// Tells Unity that the tk-unity engine has been successfully 
+        /// initialized. Will initiate the post_init hook logic
+        /// </summary>
+        static public void OnEngineInitialized()
+        {
+            // Start by refreshing the Asset Database
+            AssetDatabase.Refresh();
+
+            // Install a delay call to give the editors time to refresh before
+            // calling the post_init hook
+            EditorApplication.delayCall += CallPostInitHook;
+        }
+
+        internal static void CallPostInitHook()
+        {
+            PythonRunner.RunStringOnClient(@"
+import sgtk
+engine = sgtk.platform.current_engine()
+engine.execute_hook_method('post_init_hook', 'on_post_init', engine = engine)
+");
+        }
+
+        /// <summary>
         /// Checks if Unity was launched from Shotgun. If not, issues a 
         /// warning and removes the Assets/Shotgun directory
         /// 
@@ -98,7 +121,7 @@ namespace UnityEditor.Integrations.Shotgun
                 {
                     Directory.Delete(shotgunAssetPath, true);
                 }
-                catch (IOException ex)
+                catch (IOException)
                 {
                     Debug.LogWarning(string.Format("Could not delete the Shotgun Asset Directory located at {0}",shotgunAssetPath));
                 }
