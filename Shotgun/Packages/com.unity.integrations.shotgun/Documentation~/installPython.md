@@ -12,7 +12,14 @@ The Python interpreter should be in a location listed in the PATH environment va
     * pip.exe install PySide
     * pip.exe install rpyc
 
-## Mac TBD
+## OSX
+
+On macOS Sierra, no extra setup step is required since the system Python (`/usr/bin/python`)
+is compatible with the Unity Python server.
+
+The Unity Project's Python Settings will need to tuned for the Shotgun integration
+to use a different Python. See [Preparing a Unity project for Shotgun](preparingUnityProject.md)
+for details.
 
 ## CentOS7
 **Caveats** :
