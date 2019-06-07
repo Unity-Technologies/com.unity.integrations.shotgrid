@@ -36,6 +36,7 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
+    "com.unity.package-manager-doctools": "1.0.0-preview.20",
     "com.unity.scripting.python": "file:D:/projects/com.unity.scripting.python/PythonNet/Packages/com.unity.scripting.python"
   },
   "registry": "https://staging-packages.unity.com"
