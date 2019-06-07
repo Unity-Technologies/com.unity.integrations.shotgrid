@@ -7,17 +7,15 @@ The Shotgun integration for Unity requires that you have Python installed with s
 https://www.python.org/ftp/python/2.7.15/python-2.7.15.amd64.msi
 
 The Python interpreter should be in a location listed in the PATH environment variable.
-* Install PySide and RPyC
+* Install PySide
     * In a command prompt, go to c:\Python27\Scripts
     * pip.exe install PySide
-    * pip.exe install rpyc
 
 ## OSX
+On macOS Sierra, the system Python (`/usr/bin/python`) is compatible with the 
+Unity Python server.
 
-On macOS Sierra, no extra setup step is required since the system Python (`/usr/bin/python`)
-is compatible with the Unity Python server.
-
-The Unity Project's Python Settings will need to tuned for the Shotgun integration
+The Unity Project's Python Settings need to be tuned for the Shotgun integration
 to use a different Python. See [Preparing a Unity project for Shotgun](preparingUnityProject.md)
 for details.
 
@@ -25,8 +23,7 @@ for details.
 **Caveats** :
 The Shotgun integration doesn't work with the Python package `python27-python-2.7.13-5` provided from the software collections
   
-* Install PySide and RPyC
-    * pip install rpyc
+* Install PySide
     * yum install python2-pyside
         *  Also installable from pip, but it requires the `qt-devel` package
 
@@ -71,12 +68,5 @@ except:
     print('ERROR: could not import PySide')
     sys.exit(1)
 
-# rpyc
-try:
-    import rpyc
-except:
-    print('ERROR: could not import rpyc')
-    sys.exit(1)
-    
 print('SUCCESS: The Python interpreter is properly configured for Shotgun in Unity')
 ```
