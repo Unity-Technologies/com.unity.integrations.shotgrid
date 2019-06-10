@@ -4,7 +4,11 @@ RELEASE NOTES
 
 ## [0.4.0-preview] - 2019-06-10
 NEW FEATURES
-* New "right project, right scene, right frame" workflow
+* When recordings get published from Unity, users can:
+  * Launch Unity from related Version/Note entities (Web Shotgun). Unity will 
+  open in the associated project and scene
+  * From Shotgun Panel, Notes allow users to jump to the annotated frame, in the 
+  Timeline
 
 ## [0.3.0-preview] - 2019-03-14
 NEW FEATURES
