@@ -2,6 +2,10 @@
 
 RELEASE NOTES
 
+## [0.4.0-preview] - 2019-06-10
+NEW FEATURES
+* New "right project, right scene, right frame" workflow
+
 ## [0.3.0-preview] - 2019-03-14
 NEW FEATURES
 * Addition of a progress bar to the bootstrapping process.

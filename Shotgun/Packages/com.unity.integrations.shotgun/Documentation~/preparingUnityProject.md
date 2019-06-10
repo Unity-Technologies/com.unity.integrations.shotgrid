@@ -15,6 +15,7 @@ Please use the Shotgun package version corresponding to your configuration versi
 
 | tk-config-unity version | com.unity.integrations.shotgun version |
 | :---------------------- | :------------------------------------- |
+| 1.2.5.1                 | 0.4.0-preview                          |
 | 1.2.1.1                 | 0.3.0-preview                          |
 | 1.1.15.2                | 0.2.0-preview                          |
 | 1.1.15.1                | 0.1.0-preview                          |
