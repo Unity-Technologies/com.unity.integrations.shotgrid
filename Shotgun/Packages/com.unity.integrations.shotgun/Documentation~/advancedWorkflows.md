@@ -32,6 +32,9 @@ Or from a Note entity page
 
 ![launch_from_note_2](images/launch_from_note_2.png)
 
+In all cases, Unity should launch directly without presenting the Unity Hub or 
+the Project Selection dialog.
+
 **Note:** Launching from a Version entity or from a Note entity only works if the 
 user launching Unity has its project located in the location that is saved in
 the `sg_unity_metadata` field.
@@ -42,19 +45,13 @@ save metadata that is used in advanced workflows. Your Shotgun site administrato
 needs to add this custom field:
 
 1. As an administrator, go to the Versions page
-2. Select `Manage Version Fields...`
-
-![manage_version_fields](images/manage_version_fields.png)
-3. Create a `text` field, named `Unity Metadata`
-
-![new_field](images/new_field.png)
-You should see the new field
-
-![new_field_2](images/new_field_2.png)
-4. Go into the Fields page 
-
-![fields](images/fields.png)
-
-5. There should be a new field on Version entities. The field name should be `Unity Metadata`, the field code should be `sg_unity_metadata`, the data type should be `text`
-![validate_field](images/validate_field.png)
-
+2. Select `Manage Version Fields...`  
+![manage_version_fields](images/manage_version_fields.png)  
+3. Create a `text` field, named `Unity Metadata`  
+![new_field](images/new_field.png)  
+You should see the new field  
+![new_field_2](images/new_field_2.png)  
+4. Go into the Fields page  
+![fields](images/fields.png)  
+There should be a new field on Version entities. The field name should be `Unity Metadata`, the field code should be `sg_unity_metadata`, the data type should be `text`  
+![validate_field](images/validate_field.png)  
