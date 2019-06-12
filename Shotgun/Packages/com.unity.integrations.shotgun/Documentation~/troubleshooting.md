@@ -30,7 +30,9 @@ killall python
 thumbnails fail to draw in toolkit applications. The Shotgun team knows about 
 this problem. You can install a more recent version of Python with PySide by 
 following the instructions in the documentation for the Python Net package
-(under Installation Requirements/Mac/Python with PySide).
+(under Installation Requirements/Mac/Python with PySide). We tested Python
+2.7.16 with PySide and it resolves this problem (thumbnails are displayed 
+properly).
 
 Different versions/flavors of Python might work, but could potentially:
 * crash the Python client
