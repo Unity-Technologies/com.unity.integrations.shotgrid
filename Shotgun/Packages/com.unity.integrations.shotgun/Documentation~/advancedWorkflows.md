@@ -36,7 +36,7 @@ In all cases, Unity should launch directly without presenting the Unity Hub or
 the Project Selection dialog.
 
 **Note:** Launching from a Version entity or from a Note entity straight to the 
-right Unity project and scene only works if user have their 
+right Unity project and scene only works if the user has their 
 project in the location that is saved in the `sg_unity_metadata` field.
 If there is no matching Unity project, then the Unity Hub/Project Selector will
 be launched instead.
