@@ -36,8 +36,8 @@ In all cases, Unity should launch directly without presenting the Unity Hub or
 the Project Selection dialog.
 
 **Note:** Launching from a Version entity or from a Note entity straight to the 
-right Unity project and scene only works if the user launching Unity has its 
-project located in the location that is saved in the `sg_unity_metadata` field.
+right Unity project and scene only works if user have their 
+project in the location that is saved in the `sg_unity_metadata` field.
 If there is no matching Unity project, then the Unity Hub/Project Selector will
 be launched instead.
 
@@ -48,12 +48,21 @@ needs to add this custom field:
 
 1. As an administrator, go to the Versions page
 2. Select `Manage Version Fields...`  
-<img src="images/manage_version_fields.png" style="border: 1px solid black"/>
+
+    <img src="images/manage_version_fields.png" style="border: 1px solid black"/>
+
 3. Create a `text` field, named `Unity Metadata`  
-<img src="images/new_field.png" style="border: 1px solid black"/>
-You should see the new field  
-<img src="images/new_field_2.png" style="border: 1px solid black"/>
+
+    <img src="images/new_field.png" style="border: 1px solid black"/>
+
+    You should see the new field  
+
+    <img src="images/new_field_2.png" style="border: 1px solid black"/>
+
 4. Go into the Fields page  
-<img src="images/fields.png" style="border: 1px solid black"/>  
-There should be a new field on Version entities. The field name should be `Unity Metadata`, the field code should be `sg_unity_metadata`, the data type should be `text`  
-<img src="images/validate_field.png" style="border: 1px solid black"/>
+
+    <img src="images/fields.png" style="border: 1px solid black"/>  
+
+    There should be a new field on Version entities. The field name should be `Unity Metadata`, the field code should be `sg_unity_metadata`, the data type should be `text`  
+
+    <img src="images/validate_field.png" style="border: 1px solid black"/>
