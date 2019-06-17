@@ -92,7 +92,7 @@ in the console. The Shotgun team is aware of the problem.
 2. When Publishing (Shotgun/Publish Recording...), the `Task:` and `Link:` 
 fields will display `Loading`:
 
-    ![quit_hub_mac](images/publish_app_problem_version.png)
+    ![publish_app_problem_version](images/publish_app_problem_version.png)
     
     Trying to publish in this state will result in errors. You need to manually
     set the `Task:` and `Link:` fields before publishing. The Shotgun team is 
