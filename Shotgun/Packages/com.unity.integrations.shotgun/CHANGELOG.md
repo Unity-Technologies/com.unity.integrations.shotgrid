@@ -9,6 +9,7 @@ NEW FEATURES
   open in the associated project and scene
 * The `Shotgun/Record Timeline...` menu item has been renamed to 
 `Shotgun/Publish Recording...`
+
 ## [0.3.0-preview] - 2019-03-14
 NEW FEATURES
 * Addition of a progress bar to the bootstrapping process.
