@@ -12,7 +12,7 @@ In case you are blocked, please send the following data to us (#devs-shotgun):
 set UNITY_PYTHON_CLIENT_LOGFILE=d:\temp\mylog.txt
 ```
 
-## Using a Python That is Compatible With Shotgun
+## OSX: Using a Python That is Compatible With Shotgun
 1. It is recommended to set your Out-of-process Python to the one that ships with 
 Shotgun Desktop. In order to do so, Open the Python Settings (Edit/Projects Settings/Python):
 ![Python Settings](images/python_settings.png)
@@ -26,9 +26,17 @@ killall python
 1. Killing Python will require you to restart Shotgun Desktop
 1. Restart Unity from Shotgun Desktop. Shotgun should bootstrap
 
+**Note**: There is a known problem with the SG Desktop Python interpreter where
+thumbnails fail to draw in toolkit applications. The Shotgun team knows about 
+this problem. You can install a more recent version of Python with PySide by 
+following the instructions in the documentation for the Python Net package
+(under Installation Requirements/Mac/Python with PySide). We tested Python
+2.7.16 with PySide and it resolves this problem (thumbnails are displayed 
+properly).
+
 Different versions/flavors of Python might work, but could potentially:
 * crash the Python client
-* report a `ResponseNotReady` Python exception Error stack trace similar to this:
+* report a `ResponseNotReady` Python exception Error stack trace similar to:
 
 ```
 Traceback (most recent call last):
@@ -72,3 +80,20 @@ Hub.
 **On Mac, use the menu bar:**
 
 ![quit_hub_mac](images/quit_hub_mac.png)
+
+## Launching from a Version or a Note entity
+
+There are limitations with the Shotgun menu toolkit applications when users 
+launch Unity from a Version or a Note entity:
+
+1. Trying to open the loader app (Shotgun/Load...) will not work and show errors
+in the console. The Shotgun team is aware of the problem.
+    
+2. When Publishing (Shotgun/Publish Recording...), the `Task:` and `Link:` 
+fields will display `Loading`:
+
+    ![publish_app_problem_version](images/publish_app_problem_version.png)
+    
+    Trying to publish in this state will result in errors. You need to manually
+    set the `Task:` and `Link:` fields before publishing. The Shotgun team is 
+    aware of the problem.

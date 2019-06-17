@@ -13,4 +13,5 @@
     * [Publishing Playblasts from Unity to Shotgun](shotgunPublish)
     * [Updating Assets with the Scene Breakdown Tool](sceneBreakdown)
     * [Debug Logging](debugLogging)
+* [Advanced Workflows](advancedWorkflows)
 * [Troubleshooting](troubleshooting)
