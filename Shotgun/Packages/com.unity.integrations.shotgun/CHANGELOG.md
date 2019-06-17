@@ -7,6 +7,8 @@ NEW FEATURES
 * When recordings get published from Unity, users can:
   * Launch Unity from related Version/Note entities (Web Shotgun). Unity will 
   open in the associated project and scene
+* The `Shotgun/Record Timeline...` menu item has been renamed to 
+`Shotgun/Publish Recording...`
 
 ## [0.3.0-preview] - 2019-03-14
 NEW FEATURES
