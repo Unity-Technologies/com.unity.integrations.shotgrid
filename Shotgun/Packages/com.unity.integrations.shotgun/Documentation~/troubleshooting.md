@@ -80,3 +80,20 @@ Hub.
 **On Mac, use the menu bar:**
 
 ![quit_hub_mac](images/quit_hub_mac.png)
+
+## Launching from a Version or a Note entity
+
+There are limitations with the Shotgun menu toolkit applications when users 
+launch Unity from a Version or a Note entity:
+
+1. Trying to open the loader app (Shotgun/Load...) will not work and show errors
+in the console. The Shotgun team is aware of the problem.
+    
+2. When Publishing (Shotgun/Publish Recording...), the `Task:` and `Link:` 
+fields will display `Loading`:
+
+    ![publish_app_problem_version](images/publish_app_problem_version.png)
+    
+    Trying to publish in this state will result in errors. You need to manually
+    set the `Task:` and `Link:` fields before publishing. The Shotgun team is 
+    aware of the problem.
