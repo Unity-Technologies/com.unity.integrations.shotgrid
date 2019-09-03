@@ -5410,8 +5410,8 @@ GameObject:
   - component: {fileID: 1067078916}
   - component: {fileID: 1067078917}
   m_Layer: 0
-  m_Name: Master
-  m_TagString: Untagged
+  m_Name: Main
+  m_TagString: MainTimeline
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

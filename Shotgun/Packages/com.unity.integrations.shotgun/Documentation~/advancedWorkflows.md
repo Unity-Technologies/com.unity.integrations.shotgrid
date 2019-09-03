@@ -42,9 +42,8 @@ If there is no matching Unity project, then the Unity Hub/Project Selector will
 be launched instead.
 
 ### Jump to Frame
-When [launching Unity from a Note entity](#launching-from-a-note-entity), you 
-can use the Shotgun Panel to focus on the right timeline, on the frame associated
-with the Shotgun Note. In order to do so:
+You can use the Shotgun Panel to focus on the right timeline, on the frame 
+associated with the Shotgun Note. In order to do so:
 
 1. Select `Shotgun Panel...` in the `Shotgun` menu
 2. Click on the `Notes` tab and select the Note
@@ -55,29 +54,35 @@ with the Shotgun Note. In order to do so:
 
 **Note:** The `Jump to Frame` advanced workflow will only work for Note entities
 relating to an existing scene in the current Unity project. Also, there must
-exist a Master timeline in the scene.
-(see [Establishing the Master Timeline](#establishing-the-master-timeline)).
+exist a Main timeline in the scene.
+(see [Establishing the Main Timeline](#establishing-the-main-timeline)).
 
-When successful, the Master timeline will be brought in focus, and its frame will
+When successful, the Main timeline will be brought in focus, and its frame will
 be set to the value reflected by the Shotgun Note entity.
-<img src="images/jump_to_frame_focused_master.png" style="border: 1px solid black"/>
+<img src="images/jump_to_frame_focused_main.png" style="border: 1px solid black"/>
 
-#### Establishing the Master Timeline
-Timeline assets can be assigned to multiple game objects in Unity. There is no
-strict concept of a Master timeline in Unity. The [Jump to Frame](#jump-to-frame)
-advanced workflow needs a way to identify the "Master" timeline so it can focus 
+#### Establishing the Main Timeline
+Timeline assets can be assigned to multiple playable directors in Unity. There is no
+strict concept of a Main timeline in Unity. The [Jump to Frame](#jump-to-frame)
+advanced workflow needs a way to identify the "Main" timeline so it can focus 
 it and set its frame value.
 
-`tk-config-unity` determines which timeline is the Master timeline by looking at
-the timeline's owning Game Object name. By default, if a Game Object is named 
-`Master` and possesses a timeline, then this timeline is considered as being the 
-Master timeline.
+`tk-config-unity` determines which timeline is the Main timeline by searching for
+Game Objects tagged with a specific name. By default, if a Game Object is tagged 
+`MainTimeline` and possesses a playable director with a timeline asset assigned,
+then this timeline is considered as being the Main timeline.
 
-The name to look for can be configured in the Shotgun Panel settings, for the 
+To tag a Game Object, select it and choose `MainTimeline` in the list of tags 
+<img src="images/tagging_main_timeline.png" style="border: 1px solid black"/>
+
+You can use the `Add Tag...` menu item in the list of tags to add the 
+`MainTimeline` tag to the list if it is not present.
+
+The tag name to look for can be configured in the Shotgun Panel settings, for the 
 current environment. `tk-config-unity` sets this value in 
-`env/includes/settings/tk-multi-shotgunpanel.yml`:
+`env/includes/settings/tk-multi-shotgunpanel.yml`: 
 
-<img src="images/master_timeline_setting.png" style="border: 1px solid black"/>
+<img src="images/main_timeline_setting.png" style="border: 1px solid black"/>
 
 ## Enabling Advanced Workflows
 Unity uses a custom Version entity field named `sg_unity_metadata` in order to
@@ -101,6 +106,8 @@ needs to add this custom field:
 
     <img src="images/fields.png" style="border: 1px solid black"/>  
 
-    There should be a new field on Version entities. The field name should be `Unity Metadata`, the field code should be `sg_unity_metadata`, the data type should be `text`  
+    There should be a new field on Version entities. The field name should be 
+    `Unity Metadata`, the field code should be `sg_unity_metadata`, the data
+    type should be `text`  
 
     <img src="images/validate_field.png" style="border: 1px solid black"/>
