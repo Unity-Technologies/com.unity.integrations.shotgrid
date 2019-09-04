@@ -42,7 +42,7 @@ If there is no matching Unity project, then the Unity Hub/Project Selector will
 be launched instead.
 
 ### Jump to Frame
-You can use the Shotgun Panel to automatically select the right timeline, on the
+You can use the Shotgun Panel to automatically select the right Timeline, on the
 frame associated with a Shotgun Note. In order to do so:
 
 1. Select `Shotgun Panel...` in the `Shotgun` menu
@@ -54,24 +54,24 @@ frame associated with a Shotgun Note. In order to do so:
 
 **Note:** The `Jump to Frame` advanced workflow will only work for Note entities
 relating to an existing scene in the current Unity project. Also, there must
-exist a Main timeline in the scene.
+exist a Main Timeline in the scene.
 (see [Establishing the Main Timeline](#establishing-the-main-timeline)).
 
-When successful, the Main timeline will be selected, and its frame will be set 
+When successful, the Main Timeline will be selected, and its frame will be set 
 to the value reflected by the Shotgun Note entity.
 
 <img src="images/jump_to_frame_focused_main.png" style="border: 1px solid black"/>
 
 #### Establishing the Main Timeline
-Timeline assets can be assigned to multiple playable directors in Unity. There 
-is no strict concept of a Main playable director or timeline in Unity. The
+Timeline Assets can be assigned to multiple Playable Directors in Unity. There 
+is no strict concept of a Main Playable Director or Timeline in Unity. The
 [Jump to Frame](#jump-to-frame) advanced workflow needs a way to identify the 
-Main timeline so it can select its playable director and set its frame value.
+Main Timeline so it can select its Playable Director and set its frame value.
 
-`tk-config-unity` determines which timeline is the Main one by searching for
+`tk-config-unity` determines which Timeline is the Main one by searching for
 Game Objects tagged with a specific name. By default, if a Game Object is tagged 
-`MainTimeline` and possesses a playable director driving a timeline asset, then
-this timeline is considered as the Main timeline.
+`MainTimeline` and possesses a Playable Director driving a Timeline instance, then
+this Timeline instance is considered as the Main Timeline.
 
 To tag a Game Object, select it and choose `MainTimeline` in the list of tags 
 <img src="images/tagging_main_timeline.png" style="border: 1px solid black"/>
