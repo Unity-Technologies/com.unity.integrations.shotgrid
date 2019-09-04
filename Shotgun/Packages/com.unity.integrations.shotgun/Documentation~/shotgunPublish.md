@@ -8,14 +8,13 @@ Before starting make sure your scene and Timeline are setup for recording the pl
 
 1. Open the Recorder window by selecting Window > General > Recorder > Recorder Window
 
-2. Add a new Movie Recorder
+2. Add a new Movie Recorder. Make sure the Target Frame Rate value matches your Master Timeline settings. To learn more about the concept of Master timeline, see [Establishing the Master Timeline](advancedWorkflows.html#establishing-the-master-timeline).
 
 ![Publish to Shotgun Checkbox](images/unity_recorder.png)
 
 3. From the Unity menu, select "Shotgun/Publish Recording...". Unity will start recording, using the movie recorder that is currently selected in the Recorder window. If no movie recorder is selected, Unity will try to find a movie recorder named "Shotgun". By default, Unity will use the last movie recorder it finds
 
 4. Once the playblast finishes recording, and the editor exits playmode, the Shotgun Publish window will automatically open, showing the session recording ready to upload
-
 ![Publish to Shotgun Window](images/publish_playblast.png)
 
 5. Select the "Task", "Link" and optionally add a thumbnail and description, then click "Publish" to publish the playblast to Shotgun
@@ -28,7 +27,6 @@ Before starting make sure your scene and Timeline are setup for recording the pl
 In order to publish a previously recorded Playblast, follow these steps:
 
 1. Open the Shotgun Publish app from the Unity top menu by selecting Shotgun > Publish...
-
 ![Shotgun Publish Window](images/shotgun_publish_window.png)
 
 2. Browse or drag and drop the video file into the publish window
