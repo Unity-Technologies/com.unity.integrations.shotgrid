@@ -25,7 +25,7 @@ namespace UnityEditor.Integrations.Shotgun
         [MenuItem("Shotgun/Publish Recording...")]
         private static void Record()
         {
-            if (!Bootstrap.LaunchedFromShotgun())
+            if (!Bootstrap.VerifyLaunchedFromShotgun())
             {
                 return;
             }

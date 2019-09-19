@@ -1,4 +1,5 @@
 ﻿using Python.Runtime;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -6,13 +7,26 @@ using UnityEditor.Scripting.Python;
 
 namespace UnityEditor.Integrations.Shotgun
 {
+    /// <summary>
+    /// This class provides constants that are used throughout the Shotgun 
+    /// integration.
+    /// </summary>
     public static class Constants
     {
         /// <summary>
         /// The name of the client
         /// </summary>
         public const string clientName = "com.unity.integrations.shotgun";
+
+        /// <summary>
+        /// The name of the package
+        /// </summary>
         public const string packageName = clientName;
+
+        /// <summary>
+        /// The shotgun client module filename
+        /// </summary>
+        public const string shotgunClientModule = "sg_client.py";
     }
 
     /// <summary>
@@ -29,7 +43,7 @@ namespace UnityEditor.Integrations.Shotgun
         /// Shotgun client</param>
         public static void SpawnClient(string clientPath = null)
         {
-            if(!LaunchedFromShotgun())
+            if(!VerifyLaunchedFromShotgun())
                 return;
 
             if (Client.IsAlive == true)
@@ -38,16 +52,20 @@ namespace UnityEditor.Integrations.Shotgun
             string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
             bootstrapScript      = bootstrapScript.Replace(@"\","/");
 
-            if (clientPath == null)
+            if (string.IsNullOrEmpty(clientPath))
             {
                 // Use the default client
                 clientPath = Path.GetDirectoryName(bootstrapScript);
-                clientPath = Path.Combine(clientPath, ShotgunClientModule);
+                clientPath = Path.Combine(clientPath, Constants.shotgunClientModule);
             }
 
             // Spawn the client
             dynamic pOpenObject = PythonRunner.SpawnClient(clientPath);
-            Client.PID = (int) pOpenObject.pid;
+
+            using (Py.GIL())
+            {
+                Client.PID = pOpenObject.pid;
+            }
 
             // Remember we spawned a client
             Client.IsAlive = true;
@@ -66,10 +84,10 @@ namespace UnityEditor.Integrations.Shotgun
             EditorApplication.delayCall += CallPostInitHook;
         }
         
-        private static string ShotgunClientModule = "sg_client.py";
         internal static void CallPostInitHook()
         {
-            // Start by refreshing the Asset Database
+            // Start by refreshing the Asset Database so Unity catches the 
+            // Shotgun menu items that were generated while bootstraping
             AssetDatabase.Refresh();
 
             // Call the hook
@@ -82,7 +100,7 @@ namespace UnityEditor.Integrations.Shotgun
         /// 
         /// Returns true if Shotgun is present, false otherwise
         /// </summary>
-        internal static bool LaunchedFromShotgun()
+        internal static bool VerifyLaunchedFromShotgun()
         {
             if (System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION") == null)
             {
@@ -144,6 +162,8 @@ namespace UnityEditor.Integrations.Shotgun
             }
             set
             {
+                // Setting a value of -1 will erase the SessionState 
+                // variable
                 if (value == -1)
                 {
                     SessionState.EraseInt(shotgunClientPIDStateKey);
@@ -165,21 +185,24 @@ namespace UnityEditor.Integrations.Shotgun
                 // not exist
                 if (PID == -1)
                 {
+                    UnityEngine.Debug.LogWarning("The Shotgun client is not running. Please reimport the Shotgun package");
                     return false;
                 }
-
+                
                 // Check if the process exists
-                Process [] runningProcesses = Process.GetProcesses();
-                foreach (Process p in runningProcesses)
+                try
                 {
-                    if (p.Id == PID)
-                    {
-                        return true;
-                    }
+                    Process process = Process.GetProcessById(PID);
+                    return true;
                 }
-                    
+                catch (ArgumentException)
+                {
+                    // The process is not running
+                    IsAlive = false;
+                }
+
                 // The process does not exist anymore
-                IsAlive = false;
+                UnityEngine.Debug.LogWarning("The Shotgun client is not running. Please reimport the Shotgun package");
                 return false;
             }
             set
@@ -196,7 +219,7 @@ namespace UnityEditor.Integrations.Shotgun
 
         // Returns whether the client is connected or not.
         // If the client is not connected but is alive (see IsAlive), we assume
-        // it is reconnecting and the method will wait (block the main thread)
+        // it is reconnecting and the method will wait (blocking the main thread)
         // for a certain time until the client reconnects. 
         internal static bool EnsureConnection()
         {
@@ -207,7 +230,7 @@ namespace UnityEditor.Integrations.Shotgun
 
             // The client is alive. Give it some time to reconnect if it 
             // is not
-            var iter = PythonRunner.WaitForConnection(Constants.clientName);
+            var iter = PythonRunner.WaitForConnection(Constants.clientName, 5);
 
             bool moving = true;
             while(moving)
