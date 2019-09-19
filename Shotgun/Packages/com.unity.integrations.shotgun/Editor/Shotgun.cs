@@ -162,16 +162,7 @@ namespace UnityEditor.Integrations.Shotgun
             }
             set
             {
-                // Setting a value of -1 will erase the SessionState 
-                // variable
-                if (value == -1)
-                {
-                    SessionState.EraseInt(shotgunClientPIDStateKey);
-                }
-                else
-                {
-                    SessionState.SetInt(shotgunClientPIDStateKey, value);
-                }
+                SessionState.SetInt(shotgunClientPIDStateKey, value);
             }
         }
 
@@ -193,7 +184,21 @@ namespace UnityEditor.Integrations.Shotgun
                 try
                 {
                     Process process = Process.GetProcessById(PID);
-                    return true;
+
+                    // Crashed/closed processes can still exist. Calling 
+                    // WaitForExit will return true on such processes
+                    try
+                    {
+                        if (process.WaitForExit(0) == false)
+                        {
+                            // The process is still running
+                            return true;
+                        }
+                    }
+                    catch (SystemException)
+                    {
+                        IsAlive = false;
+                    }
                 }
                 catch (ArgumentException)
                 {
