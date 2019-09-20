@@ -5,7 +5,7 @@ import time
 def log(msg):
     print(msg)
 
-(sg_client_dir,_) = os.path.split(os.environ['SHOTGUN_UNITY_BOOTSTRAP_LOCATION'])
+sg_client_dir = os.path.dirname(os.environ['SHOTGUN_UNITY_BOOTSTRAP_LOCATION'])
 
 if sg_client_dir not in sys.path:
     sys.path.append(sg_client_dir)
@@ -20,7 +20,7 @@ class ShotgunTestClientService(sg_client.ShotgunClientService):
     @sg_client._job_dispatcher.exec_on_main_thread
     def exposed_standalone_publish(self):
         global _publish_complete
-        standalone_publish_script = os.path.join(os.path.split(__file__)[0], 'standalone_publish.py')
+        standalone_publish_script = os.path.join(os.path.dirname(__file__), 'standalone_publish.py')
         execfile(standalone_publish_script)
         _publish_complete = True
 

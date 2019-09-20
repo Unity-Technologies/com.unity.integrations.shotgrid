@@ -27,6 +27,19 @@ namespace UnityEditor.Integrations.Shotgun
         /// The shotgun client module filename
         /// </summary>
         public const string shotgunClientModule = "sg_client.py";
+
+        /// <summary>
+        /// The time to wait for the client to reconnect if a disconnection 
+        /// occurred (e.g. on domain reload)
+        /// </summary>
+        public const double clientReconnectionTimeout = 5.0;
+
+        /// <summary>
+        /// When waiting for reconnection we will periodically sleep for this 
+        /// amount of milliseconds, until clientReconnectionWaitPeriod is 
+        /// reached
+        /// </summary>
+        public const double interpreterSleepPeriod = 0.02;
     }
 
     /// <summary>
@@ -66,9 +79,6 @@ namespace UnityEditor.Integrations.Shotgun
             {
                 Client.PID = pOpenObject.pid;
             }
-
-            // Remember we spawned a client
-            Client.IsAlive = true;
         }
 
         /// <summary>
@@ -185,10 +195,10 @@ namespace UnityEditor.Integrations.Shotgun
                 {
                     Process process = Process.GetProcessById(PID);
 
-                    // Crashed/closed processes can still exist. Calling 
-                    // WaitForExit will return true on such processes
                     try
                     {
+                        // Crashed/closed processes can still exist. Calling 
+                        // WaitForExit will return true on such processes
                         if (process.WaitForExit(0) == false)
                         {
                             // The process is still running
@@ -197,31 +207,20 @@ namespace UnityEditor.Integrations.Shotgun
                     }
                     catch (SystemException)
                     {
-                        IsAlive = false;
+                        // The process is not running
+                        PID = -1;
                     }
                 }
                 catch (ArgumentException)
                 {
                     // The process is not running
-                    IsAlive = false;
+                    PID = -1;
                 }
 
-                // The process does not exist anymore
                 UnityEngine.Debug.LogWarning("The Shotgun client is not running. Please reimport the Shotgun package");
                 return false;
             }
-            set
-            {
-                // The Client PID session state variable is set right after 
-                // we spawn the client. The property setter only needs to 
-                // erase the variable when the client disappears
-                if (!value)
-                {
-                    Client.PID = -1;
-                }
-            }
         }
-
         // Returns whether the client is connected or not.
         // If the client is not connected but is alive (see IsAlive), we assume
         // it is reconnecting and the method will wait (blocking the main thread)
@@ -235,7 +234,7 @@ namespace UnityEditor.Integrations.Shotgun
 
             // The client is alive. Give it some time to reconnect if it 
             // is not
-            var iter = PythonRunner.WaitForConnection(Constants.clientName, 5);
+            var iter = PythonRunner.WaitForConnection(Constants.clientName, Constants.clientReconnectionTimeout);
 
             bool moving = true;
             while(moving)
@@ -243,8 +242,13 @@ namespace UnityEditor.Integrations.Shotgun
                 using (Py.GIL())
                 {
                     moving = iter.MoveNext();
+                    
+                    // Use the Python time module to sleep. This gives the 
+                    // interpreter a chance to schedule its threads
+                    dynamic time = Py.Import("time");
+                    time.sleep(Constants.interpreterSleepPeriod);
                 }
-                Thread.Sleep(20);
+
             }
 
             if (PythonRunner.IsClientConnected(Constants.clientName))
@@ -255,8 +259,8 @@ namespace UnityEditor.Integrations.Shotgun
             // The client never reconnected
             UnityEngine.Debug.LogWarning("The Shotgun client process is not connected. Please reimport the Shotgun package");
 
-            // Client is not alive, update its property
-            IsAlive = false;
+            // Client is not connected, update the PID
+            PID = -1;
             return false;
         }
     }
