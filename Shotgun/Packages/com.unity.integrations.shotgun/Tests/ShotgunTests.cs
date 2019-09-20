@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
-using System.IO;
 using System.Collections;
+using System.IO;
 using UnityEditor;
 using UnityEditor.Integrations.Shotgun;
 using UnityEditor.Scripting.Python;
@@ -12,8 +12,6 @@ namespace Tests
 {
     internal class ShotgunTests
     {
-        // These constants are relative to the package and must be expanded 
-        // with Path.GetFullPath($"Packages/{value}");
         private const string testsPath = "Packages/" + Constants.packageName + "/Tests";
         private const string clientPath = testsPath + "/shotgun_test_client.py";
         
@@ -29,7 +27,7 @@ namespace Tests
             PythonRunner.StopServer(false);
 
             // Bootstrap Shotgun with our test client
-            Bootstrap.SpawnClient(Path.GetFullPath(clientPath));
+            Bootstrap.SpawnClient(clientPath);
 
             // Give some time for the client to connect
             yield return PythonRunner.WaitForConnection(Constants.clientName, connectionTimeout);
