@@ -68,23 +68,25 @@ namespace UnityEditor.Integrations.Shotgun
         /// </summary>
         /// <param name="clientPath">The client Python module to use as the 
         /// Shotgun client</param>
-        public static void SpawnClient(string clientPath = null)
+        public static void SpawnClient()
+        {
+            // Use the default client
+            string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
+            bootstrapScript      = bootstrapScript.Replace(@"\","/");
+
+            string clientPath = Path.GetDirectoryName(bootstrapScript);
+            clientPath = Path.Combine(clientPath, Constants.shotgunClientModule);
+
+            SpawnClient(clientPath);
+        }
+
+        public static void SpawnClient(string clientPath)
         {
             if(!VerifyLaunchedFromShotgun())
                 return;
 
             if (Client.IsAlive == true)
                 return;
-
-            string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
-            bootstrapScript      = bootstrapScript.Replace(@"\","/");
-
-            if (string.IsNullOrEmpty(clientPath))
-            {
-                // Use the default client
-                clientPath = Path.GetDirectoryName(bootstrapScript);
-                clientPath = Path.Combine(clientPath, Constants.shotgunClientModule);
-            }
 
             // Spawn the client
             dynamic pOpenObject = PythonRunner.SpawnClient(clientPath);
@@ -165,7 +167,11 @@ namespace UnityEditor.Integrations.Shotgun
         [InitializeOnLoadMethod]
         private static void OnReload()
         {
-            SpawnClient();
+            // This prevents multiple attempts at spawning the client. There 
+            // are several domain reloads on editor startup. Using delayCall 
+            // will make sure we only spawn the client once all the domain 
+            // reloads are completed.
+            EditorApplication.delayCall += SpawnClient;
             
             // Install our clean-up callback
             EditorApplication.quitting += DeleteShotgunAssetDir;
