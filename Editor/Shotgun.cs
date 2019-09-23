@@ -118,13 +118,13 @@ namespace UnityEditor.Integrations.Shotgun
 
             if (tkUnityVersion != Constants.tkUnityVersion)
             {
-                UnityEngine.Debug.LogWarning($"The tk-unity engine version ({tkUnityVersion}) does not match what the expected value ({Constants.tkUnityVersion}). Some Shotgun features might not function properly");
+                UnityEngine.Debug.LogWarning($"The tk-unity engine version ({tkUnityVersion}) does not match the expected version ({Constants.tkUnityVersion}). Some Shotgun features might not function properly");
             }
 
             string packageVersion = PackageManager.PackageInfo.FindForAssetPath($"Packages/{Constants.packageName}/Editor/Shotgun.cs").version;
             if (packageVersion != Constants.packageVersion)
             {
-                UnityEngine.Debug.LogWarning($"The Shotgun package version ({packageVersion}) does not match the expected value ({Constants.packageVersion}). Some Shotgun features might not function properly");
+                UnityEngine.Debug.LogWarning($"The Shotgun package version ({packageVersion}) does not match the expected version ({Constants.packageVersion}). Some Shotgun features might not function properly");
             }
         }
         
