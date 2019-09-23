@@ -98,8 +98,6 @@ namespace UnityEditor.Integrations.Shotgun
             SpawnClient(clientPath);
         }
 
-
-
         /// <summary>
         /// Called from the client.
         /// Tells Unity that the tk-unity engine has been successfully 
