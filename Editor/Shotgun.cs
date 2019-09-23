@@ -68,18 +68,6 @@ namespace UnityEditor.Integrations.Shotgun
         /// </summary>
         /// <param name="clientPath">The client Python module to use as the 
         /// Shotgun client</param>
-        public static void SpawnClient()
-        {
-            // Use the default client
-            string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
-            bootstrapScript      = bootstrapScript.Replace(@"\","/");
-
-            string clientPath = Path.GetDirectoryName(bootstrapScript);
-            clientPath = Path.Combine(clientPath, Constants.shotgunClientModule);
-
-            SpawnClient(clientPath);
-        }
-
         public static void SpawnClient(string clientPath)
         {
             if(!VerifyLaunchedFromShotgun())
@@ -96,6 +84,21 @@ namespace UnityEditor.Integrations.Shotgun
                 Client.PID = pOpenObject.pid;
             }
         }
+
+        // Will spawn the default client
+        private static void SpawnClient()
+        {
+            // Use the default client
+            string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
+            bootstrapScript      = bootstrapScript.Replace(@"\","/");
+
+            string clientPath = Path.GetDirectoryName(bootstrapScript);
+            clientPath = Path.Combine(clientPath, Constants.shotgunClientModule);
+
+            SpawnClient(clientPath);
+        }
+
+
 
         /// <summary>
         /// Called from the client.
