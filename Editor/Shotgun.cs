@@ -14,32 +14,46 @@ namespace UnityEditor.Integrations.Shotgun
     public static class Constants
     {
         /// <summary>
-        /// The name of the client
+        /// The name of the client.
         /// </summary>
         public const string clientName = "com.unity.integrations.shotgun";
 
         /// <summary>
-        /// The name of the package
+        /// The name of the package.
         /// </summary>
         public const string packageName = clientName;
 
         /// <summary>
-        /// The shotgun client module filename
+        /// The shotgun client module filename.
         /// </summary>
         public const string shotgunClientModule = "sg_client.py";
 
         /// <summary>
         /// The time to wait for the client to reconnect if a disconnection 
-        /// occurred (e.g. on domain reload)
+        /// occurred (e.g. on domain reload).
         /// </summary>
         public const double clientReconnectionTimeout = 5.0;
 
         /// <summary>
         /// When waiting for reconnection we will periodically sleep for this 
         /// amount of milliseconds, until clientReconnectionWaitPeriod is 
-        /// reached
+        /// reached.
         /// </summary>
         public const double interpreterSleepPeriod = 0.02;
+
+        /// <summary>
+        /// This package's version. 
+        /// For now, both packageVersion and tkUnityVersion values need to be 
+        /// the same, down to the minor number.
+        /// </summary>
+        public const string packageVersion = "0.9.0-preview";
+
+        /// <summary>
+        /// The tk-unity engine version.
+        /// For now, both packageVersion and tkUnityVersion values need to be 
+        /// the same, down to the minor number.
+        /// </summary>
+        public const string tkUnityVersion = "v0.9";
     }
 
     /// <summary>
@@ -91,7 +105,27 @@ namespace UnityEditor.Integrations.Shotgun
             // Install a delay call to return right away.
             // Otherwise calling AssetDatabase.Refresh() would break the 
             // connection and possibly lock the client
-            EditorApplication.delayCall += CallPostInitHook;
+            EditorApplication.delayCall += DoOnEngineInitialized;
+        }
+
+        internal static void DoOnEngineInitialized()
+        {
+            CallPostInitHook();
+
+            // Now that toolkit has bootstrapped, we can validate that the 
+            // package and engine versions are what we expect
+            string tkUnityVersion = PythonRunner.CallServiceOnClient(Constants.clientName, "tk_unity_version");
+
+            if (tkUnityVersion != Constants.tkUnityVersion)
+            {
+                UnityEngine.Debug.LogWarning($"The tk-unity engine version ({tkUnityVersion}) does not match what the expected value ({Constants.tkUnityVersion}). Some Shotgun features might not function properly");
+            }
+
+            string packageVersion = PackageManager.PackageInfo.FindForAssetPath($"Packages/{Constants.packageName}/Editor/Shotgun.cs").version;
+            if (packageVersion != Constants.packageVersion)
+            {
+                UnityEngine.Debug.LogWarning($"The Shotgun package version ({packageVersion}) does not match the expected value ({Constants.packageVersion}). Some Shotgun features might not function properly");
+            }
         }
         
         internal static void CallPostInitHook()
@@ -186,7 +220,6 @@ namespace UnityEditor.Integrations.Shotgun
                 // not exist
                 if (PID == -1)
                 {
-                    UnityEngine.Debug.LogWarning("The Shotgun client is not running. Please reimport the Shotgun package");
                     return false;
                 }
                 
