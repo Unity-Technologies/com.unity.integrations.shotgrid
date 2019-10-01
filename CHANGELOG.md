@@ -1,6 +1,17 @@
-# Changes in Shotgun Integration
+# Changes in Shotgun for Unity
 
 RELEASE NOTES
+
+## [0.9.0-preview] - 2019-10-01
+This version requires:
+* tk-unity v0.9
+* Python for Unity 2.0.0
+
+It is recommended to use tk-config-unity v1.2.9.1 as the Shotgun pipeline 
+configuration.
+
+NEW FEATURES
+* New "Jump to Frame" action for Notes in the Shotgun Panel
 
 ## [0.4.0-preview] - 2019-06-10
 NEW FEATURES
