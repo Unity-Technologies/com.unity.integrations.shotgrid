@@ -308,7 +308,7 @@ namespace UnityEditor.Integrations.Shotgun
     /// <summary>
     /// This class allows calling services on the Shotgun client.
     /// </summary>
-    public class Service
+    public static class Service
     {
         /// <summary>
         /// Calls a service on the Shotgun client.
