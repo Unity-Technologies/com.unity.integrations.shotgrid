@@ -19,7 +19,7 @@ Shotgun projects need to be configured to use toolkit applications.
     ![Advanced Project Setup](images/advanced_project_setup.png)
     Follow the steps
 
-**Note:** it is sometimes necessary to clear Shotgun Desktop’s cache if your 
-new settings do not seem to be taken into account. To do so, exit Shotgun 
-Desktop and remove the %APPDATA%\Shotgun directory.
+**Note:** if your new settings aren't taken into account, clear the Shotgun 
+Desktop cache. To do so, exit Shotgun Desktop and remove the `%APPDATA%\Shotgun`
+directory.
 

@@ -6,7 +6,7 @@ downloaded the Python package and open `com.unity.scripting.python/package.json`
 downloaded the Shotgun package and open 
 `com.unity.integrations.shotgun/package.json`.
 
-## Compatibility Matrix
+## Compatibility Table
 Please use the Shotgun package version corresponding to your configuration version
 
 | tk-config-unity version | com.unity.integrations.shotgun version |

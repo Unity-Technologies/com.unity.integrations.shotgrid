@@ -1,7 +1,6 @@
 # Troubleshooting
 ## Reporting Problems
-We are actively working on problems with the Shotgun package and are releasing 
-new configs/engines/packages regularly. 
+We are actively working on new and existing issues affecting the Shotgun package. 
 
 In case you are blocked, please send the following data to us (#devs-shotgun):
 * Your Unity Editor log
