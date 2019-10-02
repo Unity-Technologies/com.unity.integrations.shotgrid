@@ -13,6 +13,13 @@ configuration.
 NEW FEATURES
 * New "Jump to Frame" action for Notes in the Shotgun Panel
 
+KNOWN ISSUES
+* Sometimes, there is a 30-seconds delay in the communication between Unity and
+the Shotgun client for Python. The most common symptoms are:
+    * Shotgun takes 30 seconds before bootstrapping after Unity is launched
+    * A toolkit dialog shows up 30 seconds after being invoked from the Shotgun  
+    menu in Unity
+
 ## [0.4.0-preview] - 2019-06-10
 NEW FEATURES
 * When recordings get published from Unity, users can:
