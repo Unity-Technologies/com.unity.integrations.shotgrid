@@ -1,7 +1,9 @@
 # Preparing a Unity project for Shotgun
 Using the Package Manager window, use the `+` button to add a local package.
-Start by adding the Python for Unity package. To do so, browse to where you
-downloaded the Python package and open
+1. Start by adding the Python for Unity package. To do so, browse to where you
+downloaded the Python package and open `com.unity.scripting.python/package.json`.
+2. Add the Shotgun for Unity package. To do so, browse to where you
+downloaded the Shotgun package and open 
 `com.unity.integrations.shotgun/package.json`.
 
 ## Compatibility Matrix
