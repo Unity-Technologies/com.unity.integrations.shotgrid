@@ -1,16 +1,12 @@
 # Troubleshooting
 ## Reporting Problems
-We are actively working on problems with the Shotgun integration and are releasing new configs/engines/Python packages regularly. Sometimes it is still required to quit Unity when Shotgun does not respond anymore. You might also need to kill the client “python.exe” process that is launched when operating Shotgun before starting Unity from Shotgun Desktop again.
+We are actively working on problems with the Shotgun package and are releasing 
+new configs/engines/packages regularly. 
 
 In case you are blocked, please send the following data to us (#devs-shotgun):
 * Your Unity Editor log
 * The contents of %APPDATA%/Shotgun/Logs
 * The content of the Python console running python.exe (client)
-* * Option 1: paste the content of the console if available
-* * Option 2: set UNITY_PYTHON_CLIENT_LOGFILE in the environment prior to launching Shotgun Desktop then send the file contents. E.g.:
-```
-set UNITY_PYTHON_CLIENT_LOGFILE=d:\temp\mylog.txt
-```
 
 ## OSX: Using a Python That is Compatible With Shotgun
 1. It is recommended to set your Out-of-process Python to the one that ships with 
@@ -62,7 +58,7 @@ ResponseNotReady
 Starting with Unity 2019.1, launching Unity from Shotgun will bring up the Unity 
 Hub (instead of the project selector). 
 
-Version 2.0.x of the Unity Hub will keep running after Unity is launched, and 
+Version 2.x.y of the Unity Hub will keep running after Unity is launched, and 
 will be brought back every time you launch Unity from Shotgun. This is 
 problematic if you need to launch Unity from a different Shotgun context, as 
 the Unity Hub will retain the first environment variables it was launched with
@@ -80,20 +76,3 @@ Hub.
 **On Mac, use the menu bar:**
 
 ![quit_hub_mac](images/quit_hub_mac.png)
-
-## Launching from a Version or a Note entity
-
-There are limitations with the Shotgun menu toolkit applications when users 
-launch Unity from a Version or a Note entity:
-
-1. Trying to open the loader app (Shotgun/Load...) will not work and show errors
-in the console. The Shotgun team is aware of the problem.
-    
-2. When Publishing (Shotgun/Publish Recording...), the `Task:` and `Link:` 
-fields will display `Loading`:
-
-    ![publish_app_problem_version](images/publish_app_problem_version.png)
-    
-    Trying to publish in this state will result in errors. You need to manually
-    set the `Task:` and `Link:` fields before publishing. The Shotgun team is 
-    aware of the problem.
