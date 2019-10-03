@@ -1,12 +1,17 @@
 # Preparing a Unity project for Shotgun
 Using the Package Manager window, use the `+` button to add a local package.
-Browse to `com.unity.integrations.shotgun/package.json` file and open it.
+1. Start by adding the Python for Unity package. To do so, browse to where you
+downloaded the Python package and open `com.unity.scripting.python/package.json`.
+2. Add the Shotgun for Unity package. To do so, browse to where you
+downloaded the Shotgun package and open 
+`com.unity.integrations.shotgun/package.json`.
 
-## Compatibility Matrix
+## Compatibility Table
 Please use the Shotgun package version corresponding to your configuration version
 
 | tk-config-unity version | com.unity.integrations.shotgun version |
 | :---------------------- | :------------------------------------- |
+| 1.2.9.1                 | 0.9.0-preview                          |
 | 1.2.5.1                 | 0.4.0-preview                          |
 | 1.2.1.1                 | 0.3.0-preview                          |
 | 1.1.15.2                | 0.2.0-preview                          |
@@ -17,7 +22,7 @@ progress bar reporting the Shotgun toolkit bootstrap progress:
 
 ![Toolkit Progress Bar](images/toolkit_progress_bar.png)
 
-Once the progress bar disappears, you can use the Shotgun menu applications. 
+Once the progress bar disappears, you can use the Shotgun menu items. 
 
 ## OSX
 It is possible that your system Python (`/usr/bin/python`) is not using a secure

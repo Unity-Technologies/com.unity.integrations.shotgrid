@@ -308,14 +308,13 @@ namespace UnityEditor.Integrations.Shotgun
     /// <summary>
     /// This class allows calling services on the Shotgun client.
     /// </summary>
-    public class Service
+    public static class Service
     {
         /// <summary>
         /// Calls a service on the Shotgun client.
         /// </summary>
         /// <param name="serviceName">The name of the service</param>
         /// <param name="args">Arguments to pass to the service</param>
-        /// <returns>The awaited task</returns>
         public static void Call(string serviceName, params object[] args)
         {
             // Do our best to get a valid client
