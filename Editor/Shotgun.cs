@@ -88,6 +88,9 @@ namespace UnityEditor.Integrations.Shotgun
         // Will spawn the default client
         private static void SpawnClient()
         {
+            if(!VerifyLaunchedFromShotgun())
+                return;
+
             // Use the default client
             string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
             bootstrapScript      = bootstrapScript.Replace(@"\","/");
