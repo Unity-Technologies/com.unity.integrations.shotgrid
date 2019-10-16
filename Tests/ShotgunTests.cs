@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEditor.Integrations.Shotgun;
 using UnityEditor.Scripting.Python;
@@ -20,7 +21,7 @@ namespace Tests
         private const double bootstrapTimeout = 100;
         private const double publishTimeout = 100;
 
-        [UnityTest]
+        [UnityTest, Explicit]
         public IEnumerator StandalonePublish()
         {
             // Restart the server, making sure there is no Shotgun client
@@ -82,6 +83,26 @@ namespace Tests
                 yield return null;
                 end = DateTime.Now;
                 duration = end-start;
+            }
+        }
+
+        [Test]
+        public void QaReportTest ()
+        {
+            var qaReportFile = Path.GetFullPath("Packages/com.unity.integrations.shotgun/QAReport.md");
+            var changelogFile = Path.GetFullPath("Packages/com.unity.integrations.shotgun/CHANGELOG.md");
+            var versionRegex = @"\[\d.\d.\d(\-preview(\.\d{1,3})?)?\]";
+            Assert.True(File.Exists(qaReportFile));
+            using (StreamReader qaReport = new StreamReader(qaReportFile), 
+                                changelog = new StreamReader(changelogFile))
+            {
+                var qaContents = qaReport.ReadToEnd();
+                var qaVersion = Regex.Match(qaContents, versionRegex).ToString();
+
+                var changelogContents = changelog.ReadToEnd();
+                var changelogVersion = Regex.Match(changelogContents, versionRegex).ToString();
+                Assert.That(qaVersion, Is.EqualTo(changelogVersion));
+                
             }
         }
     }
