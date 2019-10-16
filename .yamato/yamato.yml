@@ -34,9 +34,7 @@ promote_platform:
   type: Unity::VM
   image: package-ci/win10:stable
   flavor: b1.medium
-
 ---
-
 pack:
   name: Pack
   agent:
