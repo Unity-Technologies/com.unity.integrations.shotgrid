@@ -1,0 +1,153 @@
+
+#
+# Trigger all tests (including promotion tests) on any pull request.
+#
+# Dependency graph:
+# promote (to the production server)
+#  . publish (to the candidates server)
+#    . test on each platform
+#       . pack
+#
+# Note: I'm running tests in a promotion context to get *all* the tests.
+#
+# The tests are triggered on every push to a pull request branch.
+# Publish and promote must be run manually.
+#
+editors:
+  - version: 2019.3
+platforms:
+  - name: win
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.medium
+  - name: mac
+    type: Unity::VM::osx
+    image: buildfarm/mac:stable
+    flavor: m1.mac
+  - name: ubuntu
+    type: Unity::VM
+    image: package-ci/ubuntu:stable
+    flavor: b1.medium
+promote_platform:
+  version: 2019.3
+  name: win
+  type: Unity::VM
+  image: package-ci/win10:stable
+  flavor: b1.medium
+---
+pack:
+  name: Pack
+  agent:
+    type: Unity::VM
+    image: package-ci/ubuntu:stable
+    flavor: b1.small
+  commands:
+    - npm install -g upm-ci-utils@stable --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package pack
+  artifacts:
+   packages:
+     paths:
+       - "upm-ci~/**/*"
+
+{% for editor in editors %} {% for platform in platforms %}
+test_{{ platform.name }}_{{ editor.version }}:
+  name : Test version {{ editor.version }} on {{ platform.name }}
+  agent:
+    type: {{ platform.type }}
+    image: {{ platform.image }}
+    flavor: {{ platform.flavor}}
+{% if platform.name == "ubuntu" %}
+  variables:
+    DISPLAY: ":0"
+{% endif %}
+  commands:
+    - npm install -g upm-ci-utils@stable --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package test --unity-version {{ editor.version }}
+  triggers:
+    pull_requests:
+      - targets:
+          only:
+            - "/.*/"
+  artifacts:
+    logs:
+      paths:
+        - "upm-ci~/test-results/**/*"
+    packages:
+      paths:
+        - "upm-ci~/packages/**/*"
+  dependencies:
+    - .yamato/yamato.yml#pack
+{% endfor %} {% endfor %}
+
+promotion_test:
+  name : Promotion Test with {{ promote_platform.version }} on {{ promote_platform.name }}
+  agent:
+    type: {{ promote_platform.type }}
+    image: {{ promote_platform.image }}
+    flavor: {{ promote_platform.flavor}}
+  variables:
+    UPMCI_PROMOTION: 1
+{% if promote_platform.name == "ubuntu" %}
+    DISPLAY: ":0"
+{% endif %}
+  commands:
+    - npm install -g upm-ci-utils@stable --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package test --unity-version {{ promote_platform.version }}
+  artifacts:
+    logs:
+      paths:
+        - "upm-ci~/test-results/**/*"
+    packages:
+      paths:
+        - "upm-ci~/packages/**/*"
+  dependencies:
+    - .yamato/yamato.yml#pack
+
+dev_tests:
+  name: "Dev Tests (dependencies on candidates)"
+  dependencies:
+{% for editor in editors %} {% for platform in platforms %}
+    - .yamato/yamato.yml#test_{{platform.name}}_{{editor.version}}
+{% endfor %} {% endfor %}
+
+all_tests:
+  name: All Tests (dependencies on production)
+  dependencies:
+    - .yamato/yamato.yml#dev_tests
+    - .yamato/yamato.yml#test_promotion
+
+publish:
+  name: Publish to Internal Registry
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.small
+  commands:
+    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package publish
+  artifacts:
+    artifacts:
+      paths:
+        - "upm-ci~/packages/*.tgz"
+  dependencies:
+    - .yamato/yamato.yml#all_tests
+
+promote:
+  name: Promote to Production
+  agent:
+    type: Unity::VM
+    image: package-ci/win10:stable
+    flavor: b1.small
+  variables:
+    UPMCI_PROMOTION: 1
+  commands:
+    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - upm-ci package promote
+  artifacts:
+    artifacts:
+      paths:
+        - "upm-ci~/packages/*.tgz"
+  dependencies:
+    - .yamato/yamato.yml#all_tests
+    - .yamato/yamato.yml#publish
+
