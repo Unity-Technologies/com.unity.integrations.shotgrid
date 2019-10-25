@@ -1,4 +1,5 @@
 import os
+import unity_python.common.scheduling as scheduling
 import sys
 import time
 
@@ -17,7 +18,7 @@ class ShotgunTestClientService(sg_client.ShotgunClientService):
     def exposed_client_name(self):
         return 'com.unity.integrations.shotgun'
 
-    @sg_client._job_dispatcher.exec_on_main_thread
+    @scheduling.exec_on_main_thread
     def exposed_standalone_publish(self):
         global _publish_complete
         standalone_publish_script = os.path.join(os.path.dirname(__file__), 'standalone_publish.py')
