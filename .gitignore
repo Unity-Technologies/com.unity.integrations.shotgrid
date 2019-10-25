@@ -55,3 +55,6 @@ Shotgun/Assets/Shotgun
 # Packages
 Shotgun/Logs/Packages-Update.log
 Shotgun/ValidationSuiteResults
+
+# npm
+.npmignore
