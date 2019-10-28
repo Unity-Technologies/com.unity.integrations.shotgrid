@@ -11,22 +11,6 @@ The Python interpreter should be in a location listed in the PATH environment va
     * In a command prompt, go to c:\Python27\Scripts
     * pip.exe install PySide
 
-## OSX
-On macOS Sierra, the system Python (`/usr/bin/python`) is compatible with the 
-Unity Python server.
-
-The Unity Project's Python Settings need to be tuned for the Shotgun integration
-to use a different Python. See [Preparing a Unity project for Shotgun](preparingUnityProject.md)
-for details.
-
-## CentOS7
-**Caveats** :
-The Shotgun integration doesn't work with the Python package `python27-python-2.7.13-5` provided from the software collections
-  
-* Install PySide
-    * yum install python2-pyside
-        *  Also installable from pip, but it requires the `qt-devel` package
-
 ## Validation
 To verify that your Python interpreter is properly configured, follow these steps:
 * Launch a command prompt/shell

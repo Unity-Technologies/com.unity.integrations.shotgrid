@@ -1,36 +1,18 @@
 # Preparing a Unity project for Shotgun
-Using the Package Manager window, use the `+` button to add a local package.
-1. Start by adding the Python for Unity package. To do so, browse to where you
-downloaded the Python package and open `com.unity.scripting.python/package.json`.
-2. Add the Shotgun for Unity package. To do so, browse to where you
-downloaded the Shotgun package and open 
-`com.unity.integrations.shotgun/package.json`.
-
-## Compatibility Table
-Please use the Shotgun package version corresponding to your configuration version
+Using the Package Manager window, add the Shotgun package which matches your
+pipeline configuration in the table below:
 
 | tk-config-unity version | com.unity.integrations.shotgun version |
 | :---------------------- | :------------------------------------- |
-| 1.2.9.1                 | 0.9.0-preview                          |
-| 1.2.5.1                 | 0.4.0-preview                          |
-| 1.2.1.1                 | 0.3.0-preview                          |
-| 1.1.15.2                | 0.2.0-preview                          |
-| 1.1.15.1                | 0.1.0-preview                          |
+| 1.2.9.1                 | 0.9.0                          |
    
-Shotgun should automatically initialize on Unity startup. You should see a 
-progress bar reporting the Shotgun toolkit bootstrap progress:
+Shotgun should automatically initialize on Unity startup if you launched Unity 
+from Shotgun. You should see a progress bar reporting the Shotgun toolkit 
+bootstrap progress:
 
 ![Toolkit Progress Bar](images/toolkit_progress_bar.png)
 
 Once the progress bar disappears, you can use the Shotgun menu items. 
-
-## OSX
-It is possible that your system Python (`/usr/bin/python`) is not using a secure
-version of TLS (lower than v1.2), which makes it incompatible with Shotgun, as described 
-[here](https://support.shotgunsoftware.com/hc/en-us/articles/360009371913-Insecure-HTTPS-and-Old-Toolkit-Core-Deprecation-May-15th-2019).
-
-See the [Troubleshooting](troubleshooting.md#using-a-python-that-is-compatible-with-shotgun) 
-section on how to use a Python that is compatible with Shotgun.
 
 ## Unity 2019.1 and more recent versions
 See the [Troubleshooting](troubleshooting.md#unity-20191-and-more-recent-versions) 

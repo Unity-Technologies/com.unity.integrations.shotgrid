@@ -2,56 +2,11 @@
 ## Reporting Problems
 We are actively working on new and existing issues affecting the Shotgun package. 
 
-In case you are blocked, please send the following data to us (#devs-shotgun):
+In case you are blocked, please send the following data to us (in Fogbugz or in
+the Forums):
 * Your Unity Editor log
 * The contents of %APPDATA%/Shotgun/Logs
 * The content of the Python console running python.exe (client)
-
-## OSX: Using a Python That is Compatible With Shotgun
-1. It is recommended to set your Out-of-process Python to the one that ships with 
-Shotgun Desktop. In order to do so, Open the Python Settings (Edit/Projects Settings/Python):
-![Python Settings](images/python_settings.png)
-1. Set the Out-of-process Python to the Shotgun Desktop Python, typically 
-`/Applications/Shotgun.app/Contents/Frameworks/Python/bin/python`
-1. You might need to kill Unity and the Out-of-process Python from a terminal:
-```
-killall Unity
-killall python
-```
-1. Killing Python will require you to restart Shotgun Desktop
-1. Restart Unity from Shotgun Desktop. Shotgun should bootstrap
-
-**Note**: There is a known problem with the SG Desktop Python interpreter where
-thumbnails fail to draw in toolkit applications. The Shotgun team knows about 
-this problem. You can install a more recent version of Python with PySide by 
-following the instructions in the documentation for the Python Net package
-(under Installation Requirements/Mac/Python with PySide). We tested Python
-2.7.16 with PySide and it resolves this problem (thumbnails are displayed 
-properly).
-
-Different versions/flavors of Python might work, but could potentially:
-* crash the Python client
-* report a `ResponseNotReady` Python exception Error stack trace similar to:
-
-```
-Traceback (most recent call last):
-  File "/Users/david/Library/Caches/Shotgun/bundle_cache/sg/unity-dev/v1977/tk-unity/plugins/basic/bootstrap.py", line 40, in plugin_startup
-    tk_unity_basic.plugin_bootstrap(plugin_root_path)
-  File "/Users/david/Library/Caches/Shotgun/bundle_cache/sg/unity-dev/v1977/tk-unity/plugins/basic/tk_unity_basic/plugin_bootstrap.py", line 70, in plugin_bootstrap
-    __launch_sgtk(base_config, plugin_id, bundle_cache)
-  File "/Users/david/Library/Caches/Shotgun/bundle_cache/sg/unity-dev/v1977/tk-unity/plugins/basic/tk_unity_basic/plugin_bootstrap.py", line 139, in __launch_sgtk
-    entity
-
-  [...]
-
-  File "/Users/david/Library/Caches/Shotgun/unity-dev/p86c79.basic.desktop/cfg/install/core/python/tank_vendor/shotgun_api3/lib/httplib2/__init__.py", line 1350, in _request
-    (response, content) = self._conn_request(conn, request_uri, method, body, headers)
-  File "/Users/david/Library/Caches/Shotgun/unity-dev/p86c79.basic.desktop/cfg/install/core/python/tank_vendor/shotgun_api3/lib/httplib2/__init__.py", line 1306, in _conn_request
-    response = conn.getresponse()
-  File "/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/httplib.py", line 1119, in getresponse
-    raise ResponseNotReady()
-ResponseNotReady
-```
 
 ## Unity 2019.1 and More Recent Versions
 Starting with Unity 2019.1, launching Unity from Shotgun will bring up the Unity 
