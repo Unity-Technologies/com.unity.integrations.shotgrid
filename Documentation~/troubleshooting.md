@@ -8,11 +8,9 @@ the Forums):
 * The contents of %APPDATA%/Shotgun/Logs
 * The content of the Python console running python.exe (client)
 
-## Unity 2019.1 and More Recent Versions
-Starting with Unity 2019.1, launching Unity from Shotgun will bring up the Unity 
-Hub (instead of the project selector). 
-
-Version 2.x.y of the Unity Hub will keep running after Unity is launched, and 
+## Problems relating to the Unity Hub
+Launching Unity from Shotgun will bring up the Unity 
+Hub. The Unity Hub will keep running after Unity is launched, and 
 will be brought back every time you launch Unity from Shotgun. This is 
 problematic if you need to launch Unity from a different Shotgun context, as 
 the Unity Hub will retain the first environment variables it was launched with

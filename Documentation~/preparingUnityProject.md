@@ -14,9 +14,8 @@ bootstrap progress:
 
 Once the progress bar disappears, you can use the Shotgun menu items. 
 
-## Unity 2019.1 and more recent versions
 See the [Troubleshooting](troubleshooting.md#unity-20191-and-more-recent-versions) 
-section on how to workaround Shotgun problems caused by the Unity Hub 2.0.
+section on how to workaround Shotgun problems caused by the Unity Hub.
 
 ## Notes
 A Shotgun folder will be created under your Unity project's 
