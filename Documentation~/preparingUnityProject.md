@@ -14,8 +14,22 @@ bootstrap progress:
 
 Once the progress bar disappears, you can use the Shotgun menu items. 
 
-See the [Troubleshooting](troubleshooting.md#unity-20191-and-more-recent-versions) 
-section on how to workaround Shotgun problems caused by the Unity Hub.
+**Note** It is important to quit the Unity Hub between launches of Unity. This is 
+a known problem and Unity will release a fix for it in an upcoming version of 
+the Unity Hub. 
+
+**On Windows and CentOS, use the system tray icon:**
+
+![quit_hub_win](images/quit_hub_win.png)
+![quit_hub_lnx](images/quit_hub_lnx.png)
+
+**On Mac, use the menu bar:**
+
+![quit_hub_mac](images/quit_hub_mac.png)
+
+See the 
+[Troubleshooting](troubleshooting.md#unity-20191-and-more-recent-versions) 
+section for more details.
 
 ## Notes
 A Shotgun folder will be created under your Unity project's 
