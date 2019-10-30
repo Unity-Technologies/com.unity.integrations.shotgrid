@@ -1,5 +1,5 @@
 * [Shotgun Integration](index)
-* [Machine Setup](installPython)
+* [Setup](installPython)
     * [Install Shotgun Desktop](shotgunDesktop)
     * [Shotgun Configuration](shotgunConfig)
     * [Enabling Toolkit and Unity for your Shotgun Project](enablingToolkit)
