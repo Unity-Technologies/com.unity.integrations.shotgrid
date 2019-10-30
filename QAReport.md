@@ -1,7 +1,7 @@
 # Quality Report
 Use this file to outline the test strategy for this package.
 
-## Version tested: [0.9.0-preview]
+## Version tested: [0.9.0-preview.1]
 
 ## QA Owner: [*Add Name*]
 ## UX Owner: [*Add Name*]
