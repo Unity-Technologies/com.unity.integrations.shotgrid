@@ -114,7 +114,7 @@ all_tests:
   name: All Tests (dependencies on production)
   dependencies:
     - .yamato/yamato.yml#dev_tests
-    - .yamato/yamato.yml#test_promotion
+    - .yamato/yamato.yml#promotion_test
 
 publish_dev:
   name: Publish Dev to Internal Registry
