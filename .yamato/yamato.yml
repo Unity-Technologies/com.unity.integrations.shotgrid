@@ -120,7 +120,7 @@ publish_dev:
   name: Publish Dev to Internal Registry
   agent:
     type: Unity::VM
-    image: package-ci/ubuntu:stable
+    image: package-ci/win10:stable
     flavor: b1.small
   commands:
     - python .yamato/check_version.py -v --is-dev
@@ -137,7 +137,7 @@ publish_release:
   name: Publish Release to Internal Registry
   agent:
     type: Unity::VM
-    image: package-ci/ubuntu:stable
+    image: package-ci/win10:stable
     flavor: b1.small
   commands:
     - python .yamato/check_version.py -v
@@ -154,7 +154,7 @@ promote:
   name: Promote to Production
   agent:
     type: Unity::VM
-    image: package-ci/ubuntu:stable
+    image: package-ci/win10:stable
     flavor: b1.small
   variables:
     UPMCI_PROMOTION: 1
