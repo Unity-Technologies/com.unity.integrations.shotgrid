@@ -32,13 +32,13 @@ Or from a Note entity page
 
 <img src="images/launch_from_note_2.png" style="border: 1px solid black"/>
 
-In all cases, Unity should launch directly without presenting the Unity Hub or 
-the Project Selection dialog.
+In all cases, the Unity Editor should launch directly without going through the 
+Unity Hub first.
 
 **Note:** Launching from a Version entity or from a Note entity straight to the 
 right Unity project and scene only works if the user has their 
 project in the location that is saved in the `sg_unity_metadata` field.
-If there is no matching Unity project, then the Unity Hub/Project Selector will
+If there is no matching Unity project, then the Unity Hub will
 be launched instead.
 
 ### Jump to Frame

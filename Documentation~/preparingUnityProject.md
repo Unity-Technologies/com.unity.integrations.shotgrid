@@ -14,9 +14,14 @@ bootstrap progress:
 
 Once the progress bar disappears, you can use the Shotgun menu items. 
 
-**Note** It is important to quit the Unity Hub between launches of Unity. This is 
-a known problem and Unity will release a fix for it in an upcoming version of 
-the Unity Hub. 
+## Notes
+
+### Always quit the Unity Hub between sessions
+It is important to quit the Unity Hub between launches of Unity. Also,
+certain environment variables can prevent the Shotgun integration to function 
+properly. See the 
+[troubleshooting](troubleshooting.md#problems-relating-to-the-unity-hub) 
+section for more details.
 
 **On Windows and CentOS, use the system tray icon:**
 
@@ -27,16 +32,13 @@ the Unity Hub.
 
 ![quit_hub_mac](images/quit_hub_mac.png)
 
-See the 
-[Troubleshooting](troubleshooting.md#unity-20191-and-more-recent-versions) 
-section for more details.
-
-## Notes
+### The Shotgun folder 
 A Shotgun folder will be created under your Unity project's 
 Assets folder. This Shotgun folder will automatically be deleted when Unity 
 exits. Do not use the `Assets/Shotgun` folder to store your files, and do not 
 modify its content.
 
+### Disable Debug Logging
 It is recommended to disable Debug Logging in order to get better performance 
 (right-click in a 
 gray area of Shotgun Desktop / Advanced / Toggle Debug Logging):
