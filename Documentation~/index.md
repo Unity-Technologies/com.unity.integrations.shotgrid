@@ -4,3 +4,7 @@ In case you're new to Shotgun, check out its [features page](https://www.shotgun
 
 The [Integrations User Guide](https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide) is also a great source for additional information on workflows and apps.
 
+Please be aware that the use of this package requires a Shotgun account and 
+acceptance of Autodesk's terms and conditions.
+
+We encourage you to read to the [Autodesk Privacy Statement](https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement).
