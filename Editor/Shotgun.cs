@@ -40,20 +40,6 @@ namespace UnityEditor.Integrations.Shotgun
         /// reached.
         /// </summary>
         public const double interpreterSleepPeriod = 0.02;
-
-        /// <summary>
-        /// This package's version. 
-        /// For now, both packageVersion and tkUnityVersion values need to be 
-        /// the same, down to the minor number.
-        /// </summary>
-        public const string packageVersion = "0.9.0-preview";
-
-        /// <summary>
-        /// The tk-unity engine version.
-        /// For now, both packageVersion and tkUnityVersion values need to be 
-        /// the same, down to the minor number.
-        /// </summary>
-        public const string tkUnityVersion = "v0.9";
     }
 
     /// <summary>
@@ -121,18 +107,32 @@ namespace UnityEditor.Integrations.Shotgun
             CallPostInitHook();
 
             // Now that toolkit has bootstrapped, we can validate that the 
-            // package and engine versions are what we expect
-            string tkUnityVersion = PythonRunner.CallServiceOnClient(Constants.clientName, "tk_unity_version");
+            // package and engine versions are compatible (matching Major and 
+            // Minor version numbers)
+            string tkUnityVersionString = PythonRunner.CallServiceOnClient(Constants.clientName, "tk_unity_version");
+            string packageVersionString = PackageManager.PackageInfo.FindForAssetPath($"Packages/{Constants.packageName}/Editor/Shotgun.cs").version;
 
-            if (tkUnityVersion != Constants.tkUnityVersion)
+            // Strip the leading "v" in the tk-unity version string
+            var index = tkUnityVersionString.IndexOf("v");
+            if (index != -1 && index < (tkUnityVersionString.Length-1))
             {
-                UnityEngine.Debug.LogWarning($"The tk-unity engine version ({tkUnityVersion}) does not match the expected version ({Constants.tkUnityVersion}). Some Shotgun features might not function properly");
+                tkUnityVersionString = tkUnityVersionString.Substring(index+1);
             }
-
-            string packageVersion = PackageManager.PackageInfo.FindForAssetPath($"Packages/{Constants.packageName}/Editor/Shotgun.cs").version;
-            if (packageVersion != Constants.packageVersion)
+            
+            // Remove everything after "preview" in the package string
+            index = packageVersionString.IndexOf("preview");
+            if (index > 0)
             {
-                UnityEngine.Debug.LogWarning($"The Shotgun package version ({packageVersion}) does not match the expected version ({Constants.packageVersion}). Some Shotgun features might not function properly");
+                packageVersionString = packageVersionString.Substring(0, index-1);
+            }
+            
+            var tkUnityVersion = new System.Version(tkUnityVersionString);
+            var packageVersion = new System.Version(packageVersionString);
+
+            if (tkUnityVersion.Major != packageVersion.Major || 
+                tkUnityVersion.Minor != packageVersion.Minor)
+            {
+                UnityEngine.Debug.LogWarning($"The tk-unity engine version ({tkUnityVersionString}) is not compatible with the Shotgun package version ({packageVersionString}). Some Shotgun features might not function properly");
             }
         }
         
