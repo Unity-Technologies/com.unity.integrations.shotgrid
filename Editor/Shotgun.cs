@@ -130,14 +130,37 @@ namespace UnityEditor.Integrations.Shotgun
             {
                 packageVersionString = packageVersionString.Substring(0, index-1);
             }
-            
-            var tkUnityVersion = new System.Version(tkUnityVersionString);
-            var packageVersion = new System.Version(packageVersionString);
+    
+            System.Version tkUnityVersion = null;
+            System.Version packageVersion = null;
 
-            if (tkUnityVersion.Major != packageVersion.Major || 
-                tkUnityVersion.Minor != packageVersion.Minor)
+            try 
             {
-                UnityEngine.Debug.LogWarning($"The tk-unity engine version ({tkUnityVersionString}) is not compatible with the Shotgun package version ({packageVersionString}). Some Shotgun features might not function properly");
+                tkUnityVersion = new System.Version(tkUnityVersionString);
+            } 
+            catch (Exception)
+            {
+                UnityEngine.Debug.LogWarning($"Cannot determine the version number for tk-unity ({tkUnityVersionString}). Some Shotgun features might not function properly");
+            }
+
+            try 
+            {
+                packageVersion = new System.Version(packageVersionString);
+            } 
+            catch (Exception)
+            {
+                UnityEngine.Debug.LogWarning($"Cannot determine the version number for {Constants.packageName} ({packageVersionString}). Some Shotgun features might not function properly");
+            }
+
+            if (tkUnityVersion != null && packageVersion != null)
+            { 
+                // We were able to parse the version numbers. Now compare 
+                // them to make sure they are compatible
+                if (tkUnityVersion.Major != packageVersion.Major || 
+                    tkUnityVersion.Minor != packageVersion.Minor)
+                {
+                    UnityEngine.Debug.LogWarning($"The tk-unity engine version ({tkUnityVersionString}) is not compatible with the Shotgun package version ({packageVersionString}). Some Shotgun features might not function properly");
+                }
             }
         }
         
