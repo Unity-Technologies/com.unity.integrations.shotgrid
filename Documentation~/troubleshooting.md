@@ -31,9 +31,9 @@ It is important to quit the Unity Hub between launches of Unity.
 ### Remove system-defined environment variables
 In order to function properly, the Shotgun integration for Unity requires 
 certain environment variables to reflect the current Shotgun context. These 
-variables are defined when Shotgun Desktop (or the web client) launches Unity 
-Hub or the Unity Editor. These environment variable are `PYTHONPATH` and any 
-environment variable starting with `SHOTGUN_`. 
+variables are defined when Shotgun Desktop (or the web client) launches the 
+Unity Hub or the Unity Editor. These environment variables are `PYTHONPATH` and 
+any environment variable starting with `SHOTGUN_`. 
 
 Is is important that none of these environment variables are set globally, in 
 the system. If these variables are defined globally, the Unity Hub will use the 
