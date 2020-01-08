@@ -24,10 +24,10 @@ platforms:
     type: Unity::VM::osx
     image: buildfarm/mac:stable
     flavor: m1.mac
-  - name: ubuntu
-    type: Unity::VM
-    image: package-ci/ubuntu:stable
-    flavor: b1.medium
+#  - name: ubuntu
+#    type: Unity::VM
+#    image: package-ci/ubuntu:stable
+#    flavor: b1.medium
 promote_platform:
   version: 2019.3
   name: win
@@ -123,7 +123,6 @@ publish_dev:
     image: package-ci/win10:stable
     flavor: b1.small
   commands:
-    - python .yamato/check_version.py -v --is-dev
     - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
     - upm-ci package publish
   artifacts:
@@ -140,7 +139,6 @@ publish_release:
     image: package-ci/win10:stable
     flavor: b1.small
   commands:
-    - python .yamato/check_version.py -v
     - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
     - upm-ci package publish
   artifacts:
@@ -159,7 +157,6 @@ promote:
   variables:
     UPMCI_PROMOTION: 1
   commands:
-    - python .yamato/check_version.py -v
     - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
     - upm-ci package promote
   artifacts:
