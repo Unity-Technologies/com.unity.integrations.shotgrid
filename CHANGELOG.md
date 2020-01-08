@@ -2,7 +2,7 @@
 
 RELEASE NOTES
 
-## [0.9.0-preview.3] - 2019-12-16
+## [0.9.0-preview.4] - 2020-01-08
 This version requires:
 * tk-unity v0.9
 * Python for Unity 2.0.0

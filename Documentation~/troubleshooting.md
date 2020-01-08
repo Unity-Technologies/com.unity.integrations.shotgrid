@@ -19,6 +19,10 @@ the Unity Hub will retain the first environment variables it was launched with
 
 It is important to quit the Unity Hub between launches of Unity. 
 
+There is a known issue with the Unity Hub 2.2.1 that prevents 
+environment variables from being transferred to the Unity Editor. The workaround 
+is to upgrade the Unity Hub to a more recent version.
+
 **On Windows and CentOS, use the system tray icon:**
 
 ![quit_hub_win](images/quit_hub_win.png)
@@ -27,17 +31,4 @@ It is important to quit the Unity Hub between launches of Unity.
 **On Mac, use the menu bar:**
 
 ![quit_hub_mac](images/quit_hub_mac.png)
-
-### Remove system-defined environment variables
-In order to function properly, the Shotgun integration for Unity requires 
-certain environment variables to reflect the current Shotgun context. These 
-variables are defined when Shotgun Desktop (or the web client) launches the 
-Unity Hub or the Unity Editor. These environment variables are `PYTHONPATH` and 
-any environment variable starting with `SHOTGUN_`. 
-
-Is is important that none of these environment variables are set globally, in 
-the system. If these variables are defined globally, the Unity Hub will use the 
-global values instead of the ones required for the Shotgun context, resulting
-in a non-functioning or misbehaving Shotgun integration in the Unity Editor.
-
 
