@@ -17,9 +17,7 @@ Once the progress bar disappears, you can use the Shotgun menu items.
 ## Notes
 
 ### Always quit the Unity Hub between sessions
-It is important to quit the Unity Hub between launches of Unity. Also,
-certain environment variables can prevent the Shotgun integration to function 
-properly. See the 
+It is important to quit the Unity Hub between launches of Unity. See the 
 [troubleshooting](troubleshooting.md#problems-relating-to-the-unity-hub) 
 section for more details.
 
