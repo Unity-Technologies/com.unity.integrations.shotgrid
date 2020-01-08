@@ -1,8 +1,8 @@
 {
     "name": "com.unity.integrations.shotgun",
     "displayName" : "Shotgun",
-    "version" : "0.9.0-preview.2",
-    "dependencies" : { "com.unity.scripting.python" : "2.0.0-preview.2", "com.unity.recorder": "2.0.3-preview.1" },
+    "version" : "0.9.0-preview.4",
+    "dependencies" : { "com.unity.scripting.python" : "2.0.0-preview.4", "com.unity.recorder": "2.0.3-preview.1" },
     "unity": "2019.3",
     "description" : "This package enables Unity to work with Shotgun and use Shotgun toolkit applications.",
     "keywords" : [ "shotgun" ]
