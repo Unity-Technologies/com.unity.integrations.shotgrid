@@ -19,6 +19,10 @@ the Unity Hub will retain the first environment variables it was launched with
 
 It is important to quit the Unity Hub between launches of Unity. 
 
+There is a known issue with the Unity Hub 2.2.1 that prevents 
+environment variables from being transferred to the Unity Editor. The workaround 
+is to upgrade the Unity Hub to a more recent version.
+
 **On Windows and CentOS, use the system tray icon:**
 
 ![quit_hub_win](images/quit_hub_win.png)
