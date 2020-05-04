@@ -1,6 +1,11 @@
 import sgtk
 import sg_client
 
+import os
+def log(msg):
+    with open("C:\\Users\\Baptiste Guidoux\\AppData\\Local\\Unity\\Editor\\standalone_pub.log", 'a') as f:
+        f.write(msg + os.linesep)
+
 success = False
 
 # need to have an engine running in a context where the publisher has been
@@ -47,16 +52,33 @@ except Exception as error:
     print("Error: %s", error)
 
 # Were version entities added?
-new_version_entities = sg.find("Version",[], ['code'])
-added_version_entities = [item for item in new_version_entities if item not in original_version_entities]
+new_version_entities = sg.find("Version", [], ['code'])
+
+# OK
+added_version_entities = []
+for item in new_version_entities:
+    if item not in original_version_entities:
+        added_version_entities.append(item)
+
+# name 'original_version_entities' is not defined
+try:
+    added_version_entities = [item for item in new_version_entities if item not in original_version_entities]
+except Exception as e:
+    log(str(e))
+
+# name 'original_version_entities' is not defined
+try:
+    added_version_entities = list(filter(lambda item: item not in original_version_entities, new_version_entities))
+except Exception as e:
+    log(str(e))
 
 # look for a new version entity with the right name
 for entity in added_version_entities:
-    if entity['code'] == session_name+".mp4":
+    if entity['code'] == session_name + ".mp4":
         print('The movie file was successfully published')
         success = True
         break
-    
+
 if success:
     # There is no easy way to communicate results back to Unity. Let's create 
     # a cylinder in the current scene
