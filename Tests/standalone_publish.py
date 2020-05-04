@@ -1,10 +1,19 @@
 import sgtk
 import sg_client
+from typing import List,  Dict
 
-import os
-def log(msg):
-    with open("C:\\Users\\Baptiste Guidoux\\AppData\\Local\\Unity\\Editor\\standalone_pub.log", 'a') as f:
-        f.write(msg + os.linesep)
+
+def is_version_published(sg: 'shotgun_api3.shotgun.Shotgun', session_name: str, orig_entities: List[Dict]):
+    """ Query Shotgun for all Version entities, compare them to the Verions in `orig_entities` to check if a new version has been created, named with `session_name`
+    """ 
+    new_entities = sg.find("Version", [], ['code'])
+    added_entities = [item for item in new_entities if item not in orig_entities]
+    for entity in added_entities:
+        if entity['code'] == session_name + ".mp4":
+            print('The movie file was successfully published')
+            return True
+      
+    return False
 
 success = False
 
@@ -52,32 +61,7 @@ except Exception as error:
     print("Error: %s", error)
 
 # Were version entities added?
-new_version_entities = sg.find("Version", [], ['code'])
-
-# OK
-added_version_entities = []
-for item in new_version_entities:
-    if item not in original_version_entities:
-        added_version_entities.append(item)
-
-# name 'original_version_entities' is not defined
-try:
-    added_version_entities = [item for item in new_version_entities if item not in original_version_entities]
-except Exception as e:
-    log(str(e))
-
-# name 'original_version_entities' is not defined
-try:
-    added_version_entities = list(filter(lambda item: item not in original_version_entities, new_version_entities))
-except Exception as e:
-    log(str(e))
-
-# look for a new version entity with the right name
-for entity in added_version_entities:
-    if entity['code'] == session_name + ".mp4":
-        print('The movie file was successfully published')
-        success = True
-        break
+success = is_version_published(sg, session_name, original_version_entities)
 
 if success:
     # There is no easy way to communicate results back to Unity. Let's create 
