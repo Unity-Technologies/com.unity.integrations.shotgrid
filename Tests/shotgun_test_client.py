@@ -22,7 +22,7 @@ class ShotgunTestClientService(sg_client.ShotgunClientService):
     def exposed_standalone_publish(self):
         global _publish_complete
         standalone_publish_script = os.path.join(os.path.dirname(__file__), 'standalone_publish.py')
-        execfile(standalone_publish_script)
+        exec(open(standalone_publish_script).read())
         _publish_complete = True
 
     def exposed_bootstrapped(self):
