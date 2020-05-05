@@ -48,7 +48,6 @@ except Exception as error:
 
 # Were version entities added?
 new_version_entities = sg.find("Version",[], ['code'])
-#added_version_entities = [item for item in new_version_entities if item not in original_version_entities]
 added_version_entities = []
 for item in new_version_entities:
     if item not in original_version_entities:
