@@ -165,7 +165,7 @@ namespace UnityEditor.Integrations.Shotgun
         }
 
         /// <summary>
-        /// Returne true if Shotgun client is alive, false otherwise
+        /// Returns true if Shotgun client is alive, false otherwise
         /// </summary>
         public static bool IsClientAlive()
         {
