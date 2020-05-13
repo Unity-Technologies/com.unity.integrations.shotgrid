@@ -48,6 +48,11 @@ except Exception as error:
 
 # Were version entities added?
 new_version_entities = sg.find("Version",[], ['code'])
+# Not using a list comprehension or the `filter` function here
+# Trying to do so, for instance:
+# `[item for item in new_version_entities if item not in original_version_entities]`
+# will raise an unexpected "NameError: name 'original_version_entities' is not defined"
+# An RPyC issue is open at: https://github.com/tomerfiliba/rpyc/issues/385
 added_version_entities = []
 for item in new_version_entities:
     if item not in original_version_entities:
