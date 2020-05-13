@@ -163,7 +163,15 @@ namespace UnityEditor.Integrations.Shotgun
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Returns true if Shotgun client is alive, false otherwise
+        /// </summary>
+        public static bool IsClientAlive()
+        {
+            return Client.IsAlive;
+        }
+
         internal static void CallPostInitHook()
         {
             // Start by refreshing the Asset Database so Unity catches the 
