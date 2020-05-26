@@ -141,7 +141,7 @@ namespace UnityEditor.Integrations.Shotgun
         }
 
         private static string RecorderPath {
-            get { return RecorderSettings.outputFile; }
+            get { return RecorderSettings.OutputFile; }
             set
             {
                 var filenameGenerator = GetFieldValue("fileNameGenerator", RecorderSettings);

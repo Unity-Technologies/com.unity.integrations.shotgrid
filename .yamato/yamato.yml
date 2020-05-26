@@ -42,7 +42,7 @@ pack:
     image: package-ci/ubuntu:stable
     flavor: b1.small
   commands:
-    - npm install -g upm-ci-utils@stable --registry https://api.bintray.com/npm/unity/unity-npm
+    - npm install -g upm-ci-utils@stable --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package pack
   artifacts:
    packages:
@@ -61,7 +61,7 @@ test_{{ platform.name }}_{{ editor.version }}:
     DISPLAY: ":0"
 {% endif %}
   commands:
-    - npm install -g upm-ci-utils@stable --registry https://api.bintray.com/npm/unity/unity-npm
+    - npm install -g upm-ci-utils@stable --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package test --unity-version {{ editor.version }}
   triggers:
     pull_requests:
@@ -91,7 +91,7 @@ promotion_test:
     DISPLAY: ":0"
 {% endif %}
   commands:
-    - npm install -g upm-ci-utils@stable --registry https://api.bintray.com/npm/unity/unity-npm
+    - npm install -g upm-ci-utils@stable --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package test --unity-version {{ promote_platform.version }}
   artifacts:
     logs:
@@ -123,7 +123,7 @@ publish_dev:
     image: package-ci/win10:stable
     flavor: b1.small
   commands:
-    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package publish
   artifacts:
     artifacts:
@@ -139,7 +139,7 @@ publish_release:
     image: package-ci/win10:stable
     flavor: b1.small
   commands:
-    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package publish
   artifacts:
     artifacts:
@@ -157,7 +157,7 @@ promote:
   variables:
     UPMCI_PROMOTION: 1
   commands:
-    - npm install upm-ci-utils@stable -g --registry https://api.bintray.com/npm/unity/unity-npm
+    - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package promote
   artifacts:
     artifacts:
