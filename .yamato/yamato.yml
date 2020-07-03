@@ -15,6 +15,7 @@
 #
 editors:
   - version: 2019.3
+  - version: 2020.1
 platforms:
   - name: win
     type: Unity::VM
@@ -22,8 +23,8 @@ platforms:
     flavor: b1.medium
   - name: mac
     type: Unity::VM::osx
-    image: buildfarm/mac:stable
-    flavor: m1.mac
+    image: package-ci/mac:stable
+    flavor: b1.medium
 #  - name: ubuntu
 #    type: Unity::VM
 #    image: package-ci/ubuntu:stable
