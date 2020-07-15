@@ -2,9 +2,10 @@
 Using the Package Manager window, add the Shotgun package which matches your
 pipeline configuration in the table below:
 
-| tk-config-unity version | com.unity.integrations.shotgun version |
-| :---------------------- | :------------------------------------- |
-| 1.2.9.1                 | 0.9.0                                  |
+| tk-config-unity version | tk-unity version | com.unity.integrations.shotgun version |
+| :---------------------- | :--------------- | :------------------------------------- |
+| 1.2.9.1                 | 0.9              | 0.9.0                                  |
+| 1.2.9.2                 | 0.10             | 0.10.0                                 |
    
 Shotgun should automatically initialize on Unity startup if you launched Unity 
 from Shotgun. You should see a progress bar reporting the Shotgun toolkit 
