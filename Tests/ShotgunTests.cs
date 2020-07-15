@@ -102,7 +102,7 @@ namespace Tests
         {
             var qaReportFile = Path.GetFullPath("Packages/com.unity.integrations.shotgun/QAReport.md");
             var changelogFile = Path.GetFullPath("Packages/com.unity.integrations.shotgun/CHANGELOG.md");
-            var versionRegex = @"\[\d.\d.\d(\-preview(\.\d{1,3})?)?\]";
+            var versionRegex = @"\[\d+.\d+.\d+(\-preview(\.\d{1,3})?)?\]";
             Assert.True(File.Exists(qaReportFile));
             using (StreamReader qaReport = new StreamReader(qaReportFile), 
                                 changelog = new StreamReader(changelogFile))
