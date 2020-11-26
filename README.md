@@ -1,6 +1,27 @@
-# com.unity.integrations.shotgun
+# Shotgun for Unity: the Unity package
 
-Please be aware that the use of this package requires a Shotgun account and 
+This repository is part of the Shotgun for Unity system. This is the Unity
+Package Manager package that implements the C# code to integrate Shotgun into
+Unity itself.
+
+The full documentation is maintained in the [com.unity.integrations.shotgun](https://docs.unity3d.com/Packages/com.unity.integrations.shotgun@latest) package which is derived from the `Documentation~` directory.
+
+Related repositories include:
+* [`com.unity.integrations.shotgun`](https://github.com/Unity-Technologies/com.unity.integrations.shotgun) lets Unity communicate with Shotgun
+* [`tk-unity`](https://github.com/Unity-Technologies/tk-unity) provides the engine description for Shotgun
+* [`tk-config-unity`](https://github.com/Unity-Technologies/tk-config-unity) is a sample pipeline config that includes Unity support
+
+Please be aware that the use of this package requires a [Shotgun](https://www.shotgunsoftware.com/) account and
 acceptance of Autodesk's terms and conditions.
 
-We encourage you to read to the [Autodesk Privacy Statement](https://www.autodesk.com/company/legal-notices-trademarks/privacy-statement).
+[Contributions](CONTRIBUTING.md) are welcome.
+
+## Organization
+
+Since Shotgun is an editor-only package, all the code is in the `Editor`
+directory, except for the unit tests in `Tests`.
+
+Documentation is in the `Documentation~` directory.
+
+There is no build process to convert this repository into a package; it can be
+used as a package directly, which makes development easy.
