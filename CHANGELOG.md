@@ -2,6 +2,11 @@
 
 RELEASE NOTES
 
+## [0.10.0-preview.1] - 2020-07-03
+FIXES
+* Bump the recorder dependency to 2.2.0 or later, fixing a compile error caused by an API change.
+* Minor changes to begin to prepare for Python 3.
+
 ## [0.9.0-preview.4] - 2020-01-08
 This version requires:
 * tk-unity v0.9
