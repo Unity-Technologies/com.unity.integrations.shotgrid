@@ -6,6 +6,7 @@ findings_access:
 - markv@unity3d.com
 - benoit.hudson@unity3d.com
 organization: 5d8b8596cadf01000a30db1f
+product: 5fc968fc3e65e0603c8ff41c
 poc: benoit.hudson@unity3d.com
 slack_channel: devs-shotgun
 description: This package enables Unity to work with Autodesk Shotgun and use Autodesk Shotgun Toolkit applications.
