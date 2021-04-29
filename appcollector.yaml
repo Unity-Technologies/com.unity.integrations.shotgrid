@@ -1,0 +1,19 @@
+application_name: Shotgun for Unity
+application_type: UPM Package
+language: C#
+development_stage: Beta
+findings_access:
+- markv@unity3d.com
+- benoit.hudson@unity3d.com
+organization: 5d8b8596cadf01000a30db1f
+poc: benoit.hudson@unity3d.com
+slack_channel: devs-shotgun
+description: This package enables Unity to work with Autodesk Shotgun and use Autodesk Shotgun Toolkit applications.
+risk_assessment:
+  internet_facing: false
+  personal_info: false
+  payment_info: false
+  authentication: No Authentication
+  hosting: N/A
+  revenue_impact: false
+  pci: false
