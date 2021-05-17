@@ -48,7 +48,7 @@ namespace UnityEditor.Integrations.Shotgun
             string clientPath = Path.GetDirectoryName(bootstrapScript);
 
             // add path to 'client' to sys path
-            PythonRunner.EnsureInProcessInitialized();
+            PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
                 // Get the builtin module, which is 'builtins' on Python3 and __builtin__ on Python2
@@ -63,7 +63,7 @@ namespace UnityEditor.Integrations.Shotgun
                 sys.SetAttr("path", pySitePackages);
             }
 
-            /*PythonRunner.EnsureInProcessInitialized();
+            /*PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
                 dynamic sg_client = PythonEngine.ImportModule("sg_client");
@@ -76,7 +76,7 @@ namespace UnityEditor.Integrations.Shotgun
 
         /*public static void CallQtLoop()
         {
-            PythonRunner.EnsureInProcessInitialized();
+            PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
                 try
@@ -116,7 +116,7 @@ namespace UnityEditor.Integrations.Shotgun
             string tkUnityVersionString = "";//PythonRunner.CallServiceOnClient(Constants.clientName, "tk_unity_version");
             string packageVersionString = PackageManager.PackageInfo.FindForAssetPath($"Packages/{Constants.packageName}/Editor/Shotgun.cs").version;
 
-            PythonRunner.EnsureInProcessInitialized();
+            PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
                 dynamic sg_client = PythonEngine.ImportModule("sg_client");
@@ -182,7 +182,7 @@ namespace UnityEditor.Integrations.Shotgun
             // Shotgun menu items that were generated while bootstraping
             AssetDatabase.Refresh();
 
-            PythonRunner.EnsureInProcessInitialized();
+            PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
                 dynamic sg_client = PythonEngine.ImportModule("sg_client");
@@ -259,7 +259,7 @@ namespace UnityEditor.Integrations.Shotgun
         /// <param name="args">Arguments to pass to the service</param>
         public static void Call(string serviceName, string menuItem)
         {
-            PythonRunner.EnsureInProcessInitialized();
+            PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
                 dynamic sg_client = PythonEngine.ImportModule("sg_client");

@@ -29,4 +29,5 @@ bottom-right of the Unity icon should display all the versions of Unity that
 were discovered by Shotgun. If you do not see a Unity icon, go to 
 [Enabling Toolkit and Unity for your Shotgun Project](enablingToolkit.md) and 
 resume these steps after
-7. The Unity Hub should launch 
+7.A file selection dialog should launch, navigate to your Unity project folder 
+  and select it. This should launch the project directly without the need for the Unity Hub
