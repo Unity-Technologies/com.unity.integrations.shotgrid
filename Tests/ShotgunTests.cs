@@ -33,7 +33,6 @@ namespace Tests
             destinationPath += ".mp4";
 
             System.IO.File.Copy(videoFilePath, destinationPath, true);
-            //To do
             string stand_alone_path = Path.GetFullPath($"{testsPath}/standalone_publish.py");
             if(File.Exists(stand_alone_path))
                 PythonRunner.RunFile(stand_alone_path);
