@@ -51,45 +51,20 @@ namespace UnityEditor.Integrations.Shotgun
             PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
-                // Get the builtin module, which is 'builtins' on Python3 and __builtin__ on Python2
                 dynamic builtins = PythonEngine.ImportModule("builtins");
                 // prepend to sys.path
                 dynamic sys = PythonEngine.ImportModule("sys");
                 dynamic syspath = sys.GetAttr("path");
                 dynamic pySitePackages = builtins.list();
                 pySitePackages.append(clientPath);
-                //pySitePackages.append("C:\\Users\\Viktoria\\AppData\\Roaming\\Shotgun\\unity-dev\\p86c523.basic.desktop\\cfg\\install\\core\\python");
                 pySitePackages += syspath;
                 sys.SetAttr("path", pySitePackages);
             }
-
-            /*PythonRunner.EnsureInitialized();
-            using (Py.GIL())
-            {
-                dynamic sg_client = PythonEngine.ImportModule("sg_client");
-                sg_client.bootstrap_shotgun();
-            }*/
 
             clientPath = Path.Combine(clientPath, Constants.shotgunClientModule);
             PythonRunner.RunFile(clientPath, "__main__");
         }
 
-        /*public static void CallQtLoop()
-        {
-            PythonRunner.EnsureInitialized();
-            using (Py.GIL())
-            {
-                try
-                {
-                    dynamic sg_client = PythonEngine.ImportModule("sg_client");
-                    sg_client.main_loop();
-                }
-                catch (PythonException e)
-                {
-                    UnityEngine.Debug.LogError("Got exception while invoking the Qt loop: " + e);
-                }
-            }
-        }*/
 
         /// <summary>
         /// Called from the client.
@@ -107,13 +82,10 @@ namespace UnityEditor.Integrations.Shotgun
         internal static void DoOnEngineInitialized()
         {
             CallPostInitHook();
-
-            //UnityEditor.EditorApplication.update += CallQtLoop;
-
             // Now that toolkit has bootstrapped, we can validate that the 
             // package and engine versions are compatible (matching Major and 
             // Minor version numbers)
-            string tkUnityVersionString = "";//PythonRunner.CallServiceOnClient(Constants.clientName, "tk_unity_version");
+            string tkUnityVersionString = "";
             string packageVersionString = PackageManager.PackageInfo.FindForAssetPath($"Packages/{Constants.packageName}/Editor/Shotgun.cs").version;
 
             PythonRunner.EnsureInitialized();
@@ -253,7 +225,6 @@ namespace UnityEditor.Integrations.Shotgun
     public static class Service
     {
         /// <summary>
-        /// Calls a service on the Shotgun client.
         /// </summary>
         /// <param name="serviceName">The name of the service</param>
         /// <param name="args">Arguments to pass to the service</param>

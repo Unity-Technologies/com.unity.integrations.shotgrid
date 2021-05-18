@@ -22,8 +22,8 @@ namespace Tests
         private const double bootstrapTimeout = 100;
         private const double publishTimeout = 100;
 
-        [UnityTest, Explicit]
-        public IEnumerator StandalonePublish()
+        [Test, Explicit]
+        public void StandalonePublish()
         {
             
 
@@ -34,30 +34,12 @@ namespace Tests
 
             System.IO.File.Copy(videoFilePath, destinationPath, true);
             string stand_alone_path = Path.GetFullPath($"{testsPath}/standalone_publish.py");
-            if(File.Exists(stand_alone_path))
-                PythonRunner.RunFile(stand_alone_path);
-            else
-                yield return null;            
+            Assert.True(File.Exists(stand_alone_path));
+            PythonRunner.RunFile(stand_alone_path);
             // Upon success, the Python script creates a game object named 
             // after the product name
             GameObject go = GameObject.Find(Application.productName);
             Assert.IsNotNull(go);
-        }
-        private IEnumerator Wait(int milliseconds)
-        {
-            // Give some time for the client to process the remote call,
-            // but also give back the control to Unity so it can invoke the
-            // Python interpreter (Python threads do not run if the interpreter 
-            // does not run periodically
-            DateTime start = DateTime.Now;
-            DateTime end = DateTime.Now;
-            TimeSpan duration = end-start;
-            while (duration.TotalMilliseconds < milliseconds)
-            {
-                yield return null;
-                end = DateTime.Now;
-                duration = end-start;
-            }
         }
 
         [Test]
