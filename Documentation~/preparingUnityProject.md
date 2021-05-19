@@ -17,19 +17,11 @@ Once the progress bar disappears, you can use the Shotgun menu items.
 
 ## Notes
 
-### Always quit the Unity Hub between sessions
-It is important to quit the Unity Hub between launches of Unity. See the 
-[troubleshooting](troubleshooting.md#problems-relating-to-the-unity-hub) 
-section for more details.
-
-**On Windows and CentOS, use the system tray icon:**
-
-![quit_hub_win](images/quit_hub_win.png)
-![quit_hub_lnx](images/quit_hub_lnx.png)
-
-**On Mac, use the menu bar:**
-
-![quit_hub_mac](images/quit_hub_mac.png)
+### Launching A Project
+Shotgun replaces the need to launch a project through the Unity hub.
+Simply launch Shotgun desktop and click on your unity version. A file Selection
+Directory should pop up. Navigate to your Unity project folder and select it. 
+This should launch the project directly into your project Unity Editor. 
 
 ### The Shotgun folder 
 A Shotgun folder will be created under your Unity project's 

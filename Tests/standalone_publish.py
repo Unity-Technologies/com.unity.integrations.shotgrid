@@ -1,5 +1,6 @@
 import sgtk
 import sg_client
+import UnityEngine
 
 success = False
 
@@ -68,7 +69,6 @@ for entity in added_version_entities:
 if success:
     # There is no easy way to communicate results back to Unity. Let's create 
     # a cylinder in the current scene
-    UnityEngine = sg_client.GetUnityEngine()
     go = UnityEngine.GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cylinder)
     go.name = session_name
 
