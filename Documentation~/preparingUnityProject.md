@@ -20,7 +20,7 @@ Once the progress bar disappears, you can use the Shotgun menu items.
 ### Launching A Project
 Shotgun replaces the need to launch a project through the Unity hub.
 Simply launch Shotgun desktop and click on your unity version. A file Selection
-Directory should pop up. Navigate to your Unity poject folder and select it. 
+Directory should pop up. Navigate to your Unity project folder and select it. 
 This should launch the project directly into your project Unity Editor. 
 
 ### The Shotgun folder 
