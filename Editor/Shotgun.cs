@@ -46,9 +46,8 @@ namespace UnityEditor.Integrations.Shotgun
             bootstrapScript      = bootstrapScript.Replace(@"\","/");
 
             string clientPath = Path.GetDirectoryName(bootstrapScript);
-            //To be removed when Python Package is integrated properly
-            //Code is receiving a PySide2 environment variable to Shotgun unity to use for install
-            //A proper integration would simple Pip install Pyside
+            // Get PySide2 from the same place as Shotgun Desktop.
+            // If Python for Unity starts to ship with its own PySide2 then we should switch to using the built-in version.
             string PySideScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_PYSIDE_LOCATION");
             PySideScript= PySideScript.Replace(@"\","/");
             // add path to 'client' to sys path
