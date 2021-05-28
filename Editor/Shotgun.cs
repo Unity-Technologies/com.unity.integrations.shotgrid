@@ -46,7 +46,10 @@ namespace UnityEditor.Integrations.Shotgun
             bootstrapScript      = bootstrapScript.Replace(@"\","/");
 
             string clientPath = Path.GetDirectoryName(bootstrapScript);
-
+            // Get PySide2 from the same place as Shotgun Desktop.
+            // If Python for Unity starts to ship with its own PySide2 then we should switch to using the built-in version.
+            string pysideLocation = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_PYSIDE_LOCATION");
+            pysideLocation= pysideLocation.Replace(@"\","/");
             // add path to 'client' to sys path
             PythonRunner.EnsureInitialized();
             using (Py.GIL())
@@ -57,6 +60,7 @@ namespace UnityEditor.Integrations.Shotgun
                 dynamic syspath = sys.GetAttr("path");
                 dynamic pySitePackages = builtins.list();
                 pySitePackages.append(clientPath);
+                pySitePackages.append(pysideLocation);
                 pySitePackages += syspath;
                 sys.SetAttr("path", pySitePackages);
             }
