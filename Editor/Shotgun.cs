@@ -68,20 +68,19 @@ namespace UnityEditor.Integrations.Shotgun
 
             clientPath = Path.Combine(clientPath, Constants.shotgunClientModule);
             PythonRunner.RunFile(clientPath, "__main__");
-            //Subscribe to Package Manager API and remove Shotgun Asset when SG package is unistalled
+            //Subscribe to Package Manager API and remove Shotgun Asset when SG package is uninstalled
             //Packman API implemented for unity v2020.3 and higher
-            #if UNITY_2020_3_OR_NEWER 
-            UnityEditor.PackageManager.Events.registeringPackages +=(PackageRegistrationEventArgs args) => {
+#if UNITY_2020_3_OR_NEWER 
+            UnityEditor.PackageManager.Events.registeringPackages += (PackageRegistrationEventArgs args) => {
                 foreach ( var info in args.removed )
                 {
                     if(info.assetPath == "Packages/com.unity.integrations.shotgun")
                     {
-                        Directory.Delete("Assets/Shotgun",true);
-                        File.Delete("Assets/Shotgun.meta");
+                        DeleteShotgunAssetDir();
                     }
                 }
             };
-            #endif
+#endif
         }
 
 
@@ -224,11 +223,13 @@ namespace UnityEditor.Integrations.Shotgun
         private static void DeleteShotgunAssetDir()
         {
             string shotgunAssetPath = UnityEngine.Application.dataPath + "/Shotgun";
+            string shotgunAssetMetaPath = UnityEngine.Application.dataPath + "/Shotgun.meta";
             if (Directory.Exists(shotgunAssetPath))
             {
                 try
                 {
                     Directory.Delete(shotgunAssetPath, true);
+                    File.Delete(shotgunAssetMetaPath);
                 }
                 catch (IOException)
                 {
