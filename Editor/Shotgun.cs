@@ -1,6 +1,7 @@
 ﻿using Python.Runtime;
 using System;
 using System.IO;
+using UnityEditor.PackageManager;
 using UnityEditor.Scripting.Python;
 
 namespace UnityEditor.Integrations.Shotgun
@@ -67,6 +68,20 @@ namespace UnityEditor.Integrations.Shotgun
 
             clientPath = Path.Combine(clientPath, Constants.shotgunClientModule);
             PythonRunner.RunFile(clientPath, "__main__");
+            //Subscribe to Package Manager API and remove Shotgun Asset when SG package is unistalled
+            //Packman API implemented for unity v2020.3 and higher
+            #if UNITY_2020_3_OR_NEWER 
+            UnityEditor.PackageManager.Events.registeringPackages +=(PackageRegistrationEventArgs args) => {
+                foreach ( var info in args.removed )
+                {
+                    if(info.assetPath == "Packages/com.unity.integrations.shotgun")
+                    {
+                        Directory.Delete("Assets/Shotgun",true);
+                        File.Delete("Assets/Shotgun.meta");
+                    }
+                }
+            };
+            #endif
         }
 
 
