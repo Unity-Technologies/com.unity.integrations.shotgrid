@@ -2,6 +2,11 @@
 
 RELEASE NOTES
 
+## [1.1.0-exp.1] - 2021-06-07
+FIXES
+* Proper uninstall of Shotgun package
+* API usage of python package updated to run in-process 
+
 ## [0.10.0-preview.1] - 2020-07-03
 FIXES
 * Bump the recorder dependency to 2.2.0 or later, fixing a compile error caused by an API change.

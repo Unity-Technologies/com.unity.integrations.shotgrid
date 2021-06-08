@@ -20,7 +20,6 @@ namespace UnityEditor.Integrations.Shotgun
         /// The name of the package.
         /// </summary>
         public const string packageName = clientName;
-
         /// <summary>
         /// The shotgun client module filename.
         /// </summary>
@@ -232,7 +231,7 @@ namespace UnityEditor.Integrations.Shotgun
         /// Executes a menu item defined in the Shotgun client.
         /// </summary>
         /// <param name="serviceName">The name of the service</param>
-        /// <param name="args">Arguments to pass to the service</param>
+        /// <param name="menuItem">Arguments to pass to the service</param>
         public static void Call(string serviceName, string menuItem)
         {
             PythonRunner.EnsureInitialized();

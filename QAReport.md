@@ -1,8 +1,8 @@
 # Quality Report
 
-## Version tested: [0.10.0-preview.1]
+## Version tested: [1.1.0-exp.1]
 
-## QA Owner: Natalia Whiteley
+## QA Owner: Mojibola Obadimeji
 ## UX Owner: David Lassonde
 
 ## Test strategy
