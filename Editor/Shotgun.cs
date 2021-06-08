@@ -12,44 +12,39 @@ namespace UnityEditor.Integrations.Shotgun
     public static class Constants
     {
         /// <summary>
-        /// The name of the client.
-        /// </summary>
-        public const string clientName = "com.unity.integrations.shotgun";
-
-        /// <summary>
         /// The name of the package.
         /// </summary>
-        public const string packageName = clientName;
+        public const string packageName = "com.unity.integrations.shotgun";
         /// <summary>
-        /// The shotgun client module filename.
+        /// The shotgun bootstrap module filename.
         /// </summary>
-        public const string shotgunClientModule = "sg_client.py";
+        public const string shotgunBootstrapModule = "sg_bootstrap.py";
     }
 
     /// <summary>
     /// Manages initialization and termination of the Shotgun integration.
-    /// Also manages the Shotgun Python client lifecycle.
+    /// Also manages the Shotgun Python bootstrap lifecycle.
     /// </summary>
     public static class Bootstrap
     {
-        // Will spawn the default client
-        private static void SpawnClient()
+        // Will spawn the default SG bootstrap
+        private static void SpawnBootstrap()
         {
             if(!VerifyLaunchedFromShotgun())
             {
                 return;
             }
 
-            // Use the default client
+            // Use the default botstrap
             string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
             bootstrapScript      = bootstrapScript.Replace(@"\","/");
 
-            string clientPath = Path.GetDirectoryName(bootstrapScript);
+            string bootstrapPath = Path.GetDirectoryName(bootstrapScript);
             // Get PySide2 from the same place as Shotgun Desktop.
             // If Python for Unity starts to ship with its own PySide2 then we should switch to using the built-in version.
             string pysideLocation = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_PYSIDE_LOCATION");
             pysideLocation= pysideLocation.Replace(@"\","/");
-            // add path to 'client' to sys path
+            // add path to 'bootstrap' to sys path
             PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
@@ -58,19 +53,19 @@ namespace UnityEditor.Integrations.Shotgun
                 dynamic sys = PythonEngine.ImportModule("sys");
                 dynamic syspath = sys.GetAttr("path");
                 dynamic pySitePackages = builtins.list();
-                pySitePackages.append(clientPath);
+                pySitePackages.append(bootstrapPath);
                 pySitePackages.append(pysideLocation);
                 pySitePackages += syspath;
                 sys.SetAttr("path", pySitePackages);
             }
 
-            clientPath = Path.Combine(clientPath, Constants.shotgunClientModule);
-            PythonRunner.RunFile(clientPath, "__main__");
+            bootstrapPath = Path.Combine(bootstrapPath, Constants.shotgunBootstrapModule);
+            PythonRunner.RunFile(bootstrapPath, "__main__");
         }
 
 
         /// <summary>
-        /// Called from the client.
+        /// Called from SG bootstrap.
         /// Tells Unity that the tk-unity engine has been successfully 
         /// initialized. Will initiate the post_init hook logic.
         /// </summary>
@@ -78,7 +73,7 @@ namespace UnityEditor.Integrations.Shotgun
         {
             // Install a delay call to return right away.
             // Otherwise calling AssetDatabase.Refresh() would break the 
-            // connection and possibly lock the client
+            // connection and possibly lock bootstrapping
             EditorApplication.delayCall += DoOnEngineInitialized;
         }
 
@@ -94,8 +89,8 @@ namespace UnityEditor.Integrations.Shotgun
             PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
-                dynamic sg_client = PythonEngine.ImportModule("sg_client");
-                tkUnityVersionString = sg_client.test_tk_unity_version();
+                dynamic sg_bootstrap = PythonEngine.ImportModule("sg_bootstrap");
+                tkUnityVersionString = sg_bootstrap.test_tk_unity_version();
             }
             UnityEngine.Debug.Log("tk unity version: " + tkUnityVersionString);
 
@@ -160,8 +155,8 @@ namespace UnityEditor.Integrations.Shotgun
             PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
-                dynamic sg_client = PythonEngine.ImportModule("sg_client");
-                sg_client.test_invoke_post_init_hook();
+                dynamic sg_bootstrap = PythonEngine.ImportModule("sg_bootstrap");
+                sg_bootstrap.test_invoke_post_init_hook();
             }
         }
 
@@ -192,11 +187,11 @@ namespace UnityEditor.Integrations.Shotgun
         [InitializeOnLoadMethod]
         private static void OnReload()
         {
-            // This prevents multiple attempts at spawning the client. There 
+            // This prevents multiple attempts at bootstrapping . There 
             // are several domain reloads on editor startup. Using delayCall 
-            // will make sure we only spawn the client once all the domain 
+            // will make sure we only bootstrap once all the domain 
             // reloads are completed.
-            EditorApplication.delayCall += SpawnClient;
+            EditorApplication.delayCall += SpawnBootstrap;
             
             // Install our clean-up callback
             EditorApplication.quitting += DeleteShotgunAssetDir;
@@ -223,12 +218,12 @@ namespace UnityEditor.Integrations.Shotgun
     }
 
     /// <summary>
-    /// This class allows calling services on the Shotgun client.
+    /// This class allows calling services on the Shotgun bootstrap.
     /// </summary>
     public static class Service
     {
         /// <summary>
-        /// Executes a menu item defined in the Shotgun client.
+        /// Executes a menu item defined in the Shotgun bootstrap.
         /// </summary>
         /// <param name="serviceName">The name of the service</param>
         /// <param name="menuItem">Arguments to pass to the service</param>
@@ -237,8 +232,8 @@ namespace UnityEditor.Integrations.Shotgun
             PythonRunner.EnsureInitialized();
             using (Py.GIL())
             {
-                dynamic sg_client = PythonEngine.ImportModule("sg_client");
-                sg_client.test_execute_menu_item(menuItem);
+                dynamic sg_bootstrap = PythonEngine.ImportModule("sg_bootstrap");
+                sg_bootstrap.test_execute_menu_item(menuItem);
             }
 
         }

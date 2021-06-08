@@ -6,16 +6,16 @@ import time
 def log(msg):
     print(msg)
 
-sg_client_dir = os.path.dirname(os.environ['SHOTGUN_UNITY_BOOTSTRAP_LOCATION'])
+sg_bootstrap_dir = os.path.dirname(os.environ['SHOTGUN_UNITY_BOOTSTRAP_LOCATION'])
 
-if sg_client_dir not in sys.path:
-    sys.path.append(sg_client_dir)
-import sg_client
+if sg_bootstrap_dir not in sys.path:
+    sys.path.append(sg_bootstrap_dir)
+import sg_bootstrap
 
 _publish_complete = False
 
-class ShotgunTestClientService(sg_client.ShotgunClientService):
-    def exposed_client_name(self):
+class ShotgunTestBootstrapService(sg_bootstrap.ShotgunBootStrapService):
+    def exposed_bootstrap_name(self):
         return 'com.unity.integrations.shotgun'
 
     @scheduling.exec_on_main_thread
@@ -26,10 +26,10 @@ class ShotgunTestClientService(sg_client.ShotgunClientService):
         _publish_complete = True
 
     def exposed_bootstrapped(self):
-        return sg_client._shotgun_is_initialized
+        return sg_bootstrap._shotgun_is_initialized
 
     def exposed_published(self):
         return _publish_complete
 
 if __name__ == '__main__':
-    sg_client.main(ShotgunTestClientService)
+    sg_bootstrap.main(ShotgunTestBootStrapService)

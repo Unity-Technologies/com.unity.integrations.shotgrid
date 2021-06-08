@@ -13,9 +13,7 @@ namespace Tests
 {
     internal class ShotgunTests
     {
-        private const string testsPath = "Packages/" + Constants.packageName + "/Tests";
-        private const string clientPath = testsPath + "/shotgun_test_client.py";
-        
+        private const string testsPath = "Packages/" + Constants.packageName + "/Tests";      
         // In seconds
         private const double connectionTimeout = 20;
         private const double shutdownTimeout = 5;

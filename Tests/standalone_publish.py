@@ -1,5 +1,5 @@
 import sgtk
-import sg_client
+import sg_bootstrap
 import UnityEngine
 
 success = False
