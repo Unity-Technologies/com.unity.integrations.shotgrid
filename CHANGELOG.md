@@ -3,8 +3,13 @@
 RELEASE NOTES
 
 ## [1.1.0-exp.1] - 2021-06-07
+This version requires:
+* tk-unity v1.1
+* Python for Unity 4.0.0-exp.5
+
 FIXES
-* Proper uninstall of Shotgun package
+* One click install of Shotgun package
+* Proper uninstall of Shotgun package(Shotgun assets are removed)
 * API usage of python package updated to run in-process 
 
 ## [0.10.0-preview.1] - 2020-07-03
