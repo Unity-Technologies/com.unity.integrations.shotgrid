@@ -3,14 +3,14 @@
 RELEASE NOTES
 
 ## [1.1.0-exp.1] - 2021-06-07
-This version requires:
-* tk-unity v1.1
-* Python for Unity 4.0.0-exp.5
+INCOMPATIBLE CHANGES:
+* Updated to Python 3.7. Your scripts will need to be ported.
+* Updated to Python for Unity 4.0. The out of process API no longer exists, instead we can safely run Python within the Unity main thread. This should simplify new development but will require adapting scripts written for the prior version.
 
-FIXES
-* One click install of Shotgun package
-* Proper uninstall of Shotgun package(Shotgun assets are removed)
-* API usage of python package updated to run in-process 
+FIXES and IMPROVEMENTS:
+* You no longer need to kill the Unity Hub when launching from Shotgun Desktop.
+* There are no longer any additional client installation steps beyond adding the com.unity.integrations.shotgun package within Unity.
+* Uninstalling the package removes Shotgun assets added to the project.
 
 ## [0.10.0-preview.1] - 2020-07-03
 FIXES
