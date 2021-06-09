@@ -28,15 +28,15 @@ namespace UnityEditor.Integrations.Shotgun
     /// </summary>
     public static class Bootstrap
     {
-        // Will spawn the default SG bootstrap
-        private static void SpawnBootstrap()
+        // Will activate the default SG bootstrap
+        private static void DoBootstrap()
         {
             if(!VerifyLaunchedFromShotgun())
             {
                 return;
             }
 
-            // Use the default botstrap
+            // Use the default bootstrap
             string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
             bootstrapScript      = bootstrapScript.Replace(@"\","/");
 
@@ -105,7 +105,7 @@ namespace UnityEditor.Integrations.Shotgun
             using (Py.GIL())
             {
                 dynamic sg_bootstrap = PythonEngine.ImportModule("sg_bootstrap");
-                tkUnityVersionString = sg_bootstrap.test_tk_unity_version();
+                tkUnityVersionString = sg_bootstrap.tk_unity_version();
             }
             UnityEngine.Debug.Log("tk unity version: " + tkUnityVersionString);
 
@@ -171,7 +171,7 @@ namespace UnityEditor.Integrations.Shotgun
             using (Py.GIL())
             {
                 dynamic sg_bootstrap = PythonEngine.ImportModule("sg_bootstrap");
-                sg_bootstrap.test_invoke_post_init_hook();
+                sg_bootstrap.invoke_post_init_hook();
             }
         }
 
@@ -202,11 +202,11 @@ namespace UnityEditor.Integrations.Shotgun
         [InitializeOnLoadMethod]
         private static void OnReload()
         {
-            // This prevents multiple attempts at bootstrapping . There 
+            // This prevents multiple attempts at bootstrapping.There 
             // are several domain reloads on editor startup. Using delayCall 
             // will make sure we only bootstrap once all the domain 
             // reloads are completed.
-            EditorApplication.delayCall += SpawnBootstrap;
+            EditorApplication.delayCall += DoBootstrap;
             
             // Install our clean-up callback
             EditorApplication.quitting += DeleteShotgunAssetDir;
