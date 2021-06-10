@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using Python.Runtime;
+using System.Collections;
 using System.Reflection;
 using UnityEditor.Recorder;
 using UnityEngine;
-using Python.Runtime;
 using UnityEditor.Scripting.Python;
 
 namespace UnityEditor.Integrations.Shotgun
