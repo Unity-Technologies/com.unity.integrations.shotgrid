@@ -14,7 +14,7 @@
 # Publish and promote must be run manually.
 #
 editors:
-  - version: 2019.3
+  - version: 2019.4
   - version: 2020.1
 platforms:
   - name: win
@@ -30,7 +30,7 @@ platforms:
 #    image: package-ci/ubuntu:stable
 #    flavor: b1.medium
 promote_platform:
-  version: 2019.3
+  version: 2019.4
   name: win
   type: Unity::VM
   image: package-ci/win10:stable

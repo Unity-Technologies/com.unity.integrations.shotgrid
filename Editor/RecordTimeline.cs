@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using Python.Runtime;
+using System.Collections;
 using System.Reflection;
 using UnityEditor.Recorder;
 using UnityEngine;
+using UnityEditor.Scripting.Python;
 
 namespace UnityEditor.Integrations.Shotgun
 {
@@ -103,7 +105,14 @@ namespace UnityEditor.Integrations.Shotgun
                 if (state == PlayModeStateChange.EnteredEditMode)
                 {
                     // Publish with Shotgun
-                    Service.Call("execute_menu_item", "Publish...");
+                    PythonRunner.EnsureInitialized();
+                    using (Py.GIL())
+                    {
+                        {
+                            dynamic sg_bootstrap = PythonEngine.ImportModule("sg_bootstrap");
+                            sg_bootstrap.test_execute_menu_item("Publish...");
+                        }
+                    }
 
                     EditorApplication.playModeStateChanged -= OnPlayModeStateChange;
                     RecorderPath = s_origFilePath;

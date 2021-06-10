@@ -13,9 +13,7 @@ namespace Tests
 {
     internal class ShotgunTests
     {
-        private const string testsPath = "Packages/" + Constants.packageName + "/Tests";
-        private const string clientPath = testsPath + "/shotgun_test_client.py";
-        
+        private const string testsPath = "Packages/" + Constants.packageName + "/Tests";      
         // In seconds
         private const double connectionTimeout = 20;
         private const double shutdownTimeout = 5;
@@ -47,7 +45,7 @@ namespace Tests
         {
             var qaReportFile = Path.GetFullPath("Packages/com.unity.integrations.shotgun/QAReport.md");
             var changelogFile = Path.GetFullPath("Packages/com.unity.integrations.shotgun/CHANGELOG.md");
-            var versionRegex = @"\[\d+.\d+.\d+(\-preview(\.\d{1,3})?)?\]";
+            var versionRegex = @"\[\d+.\d+.\d+(\-exp|pre|rc(\.\d{1,3})?)?\]";
             Assert.True(File.Exists(qaReportFile));
             using (StreamReader qaReport = new StreamReader(qaReportFile), 
                                 changelog = new StreamReader(changelogFile))
