@@ -110,7 +110,7 @@ namespace UnityEditor.Integrations.Shotgun
                     {
                         {
                             dynamic sg_bootstrap = PythonEngine.ImportModule("sg_bootstrap");
-                            sg_bootstrap.test_execute_menu_item("Publish...");
+                            sg_bootstrap.execute_menu_item("Publish...");
                         }
                     }
 
