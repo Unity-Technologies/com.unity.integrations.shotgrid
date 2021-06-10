@@ -28,7 +28,7 @@ namespace UnityEditor.Integrations.Shotgun
     /// </summary>
     public static class Bootstrap
     {
-        // Will activate the default SG bootstrap
+        // Will start the bootstrap process
         private static void DoBootstrap()
         {
             if(!VerifyLaunchedFromShotgun())
@@ -202,7 +202,7 @@ namespace UnityEditor.Integrations.Shotgun
         [InitializeOnLoadMethod]
         private static void OnReload()
         {
-            // This prevents multiple attempts at bootstrapping.There 
+            // This prevents multiple attempts at bootstrapping. There 
             // are several domain reloads on editor startup. Using delayCall 
             // will make sure we only bootstrap once all the domain 
             // reloads are completed.
