@@ -234,25 +234,4 @@ namespace UnityEditor.Integrations.Shotgun
         }
     }
 
-    /// <summary>
-    /// This class allows calling services on the Shotgun bootstrap.
-    /// </summary>
-    public static class Service
-    {
-        /// <summary>
-        /// Executes a menu item defined in the Shotgun bootstrap.
-        /// </summary>
-        /// <param name="serviceName">The name of the service</param>
-        /// <param name="menuItem">Arguments to pass to the service</param>
-        public static void Call(string serviceName, string menuItem)
-        {
-            PythonRunner.EnsureInitialized();
-            using (Py.GIL())
-            {
-                dynamic sg_bootstrap = PythonEngine.ImportModule("sg_bootstrap");
-                sg_bootstrap.test_execute_menu_item(menuItem);
-            }
-
-        }
-    }
 }
