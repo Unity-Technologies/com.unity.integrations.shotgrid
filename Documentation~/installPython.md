@@ -1,6 +1,6 @@
 # Bring your own Python
 
-The Shotgun integration for Unity requires that you have Python installed with specific packages available.
+The Shotgrid integration for Unity requires that you have Python installed with specific packages available.
 
 ## Windows
 * Install Python 2.7 x64 (2.7.15 recommended, preferably under c:\Python27)
@@ -52,5 +52,5 @@ except:
     print('ERROR: could not import PySide')
     sys.exit(1)
 
-print('SUCCESS: The Python interpreter is properly configured for Shotgun in Unity')
+print('SUCCESS: The Python interpreter is properly configured for Shotgrid in Unity')
 ```

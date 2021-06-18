@@ -1,5 +1,5 @@
 {
-    "name": "Unity.Integrations.Shotgun",
+    "name": "Unity.Integrations.Shotgrid",
     "references": [
         "Unity.Scripting.Python.Editor",
         "Unity.Recorder.Editor"
