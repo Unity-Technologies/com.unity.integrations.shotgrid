@@ -1,6 +1,6 @@
 # Loading Shotgrid Content into Unity
 
-Use the [Shotgrid Loader app](https://support.shotgridsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Loader) to import content published to Shotgrid into your Unity Project:
+Use the [Shotgrid Loader app](https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Loader) to import content published to Shotgrid into your Unity Project:
 
 1. Open the Loader app by selecting Shotgrid > Load.. from the top level Unity menu
 2. Browse to the desired asset to load into Unity

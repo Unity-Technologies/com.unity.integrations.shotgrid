@@ -4,7 +4,7 @@ When debug logging is enabled, the Shotgrid Integration provides detailed log me
 
 * tk-unity.log
 * tk-desktop.log
-* tk-shotgrid.log
+* tk-shotgun.log
 
 The location of these log files can be opened by selecting the Shotgrid > Project [Shotgrid Project] > Open Log Folder menu item.
 

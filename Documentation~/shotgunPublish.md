@@ -1,6 +1,6 @@
 # Publishing Playblasts from Unity to Shotgrid
 
-Use the [Publish app](https://support.shotgridsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher) included with the Shotgrid Toolkit to upload recorded playblasts as well as other content to Shotgrid.
+Use the [Publish app](https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher) included with the Shotgrid Toolkit to upload recorded playblasts as well as other content to Shotgrid.
 
 ## Record and Publish with the Unity Recorder
 

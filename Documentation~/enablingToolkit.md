@@ -20,6 +20,6 @@ Shotgrid projects need to be configured to use toolkit applications.
     Follow the steps
 
 **Note:** if your new settings aren't taken into account, clear the Shotgrid
-Desktop cache. To do so, exit Shotgrid Desktop and remove the `%APPDATA%\Shotgrid`
+Desktop cache. To do so, exit Shotgrid Desktop and remove the `%APPDATA%\Shotgun`
 directory.
 
