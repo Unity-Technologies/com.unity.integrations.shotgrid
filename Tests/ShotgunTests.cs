@@ -4,14 +4,14 @@ using System.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
 using UnityEditor;
-using UnityEditor.Integrations.Shotgun;
+using UnityEditor.Integrations.Shotgrid;
 using UnityEditor.Scripting.Python;
 using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Tests
 {
-    internal class ShotgunTests
+    internal class ShotgridTests
     {
         private const string testsPath = "Packages/" + Constants.packageName + "/Tests";      
         // In seconds
@@ -43,8 +43,8 @@ namespace Tests
         [Test]
         public void QaReportTest ()
         {
-            var qaReportFile = Path.GetFullPath("Packages/com.unity.integrations.shotgun/QAReport.md");
-            var changelogFile = Path.GetFullPath("Packages/com.unity.integrations.shotgun/CHANGELOG.md");
+            var qaReportFile = Path.GetFullPath("Packages/com.unity.integrations.shotgrid/QAReport.md");
+            var changelogFile = Path.GetFullPath("Packages/com.unity.integrations.shotgrid/CHANGELOG.md");
             var versionRegex = @"\[\d+.\d+.\d+(\-exp|pre|rc(\.\d{1,3})?)?\]";
             Assert.True(File.Exists(qaReportFile));
             using (StreamReader qaReport = new StreamReader(qaReportFile), 

@@ -7,7 +7,7 @@ success = False
 # need to have an engine running in a context where the publisher has been
 # configured.
 engine = sgtk.platform.current_engine()
-assert engine, 'There is no Shotgun engine'
+assert engine, 'There is no Shotgrid engine'
 
 # get the publish app instance from the engine's list of configured apps
 publish_app = engine.apps.get("tk-multi-publish2")
@@ -33,11 +33,12 @@ tasks_failed_validation = manager.validate()
 assert len(tasks_failed_validation) == 0, 'Validation failed'
 
 # Keep a list of all version entities prior to publishing
+# engine.shotgun should changed to engine.shotgrid after codebase is changed to completely reflect shotgrid
 sg = engine.shotgun
 original_version_entities = sg.find("Version",[], ['code'])
 
 # all good. let's publish and finalize
-print('Publishing %s to Shotgun'%(session_name+".mp4"))
+print('Publishing %s to Shotgrid'%(session_name+".mp4"))
 try:
     ret_val = manager.publish()
     # If a plugin needed to version up a file name after publish

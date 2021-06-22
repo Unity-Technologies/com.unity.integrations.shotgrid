@@ -2,16 +2,16 @@
 The tk-config-unity configuration comes with customizations that can greatly
 improve artist productivity. 
 
-See [Enabling Advanced Workflows](#enabling-advanced-workflows) for details on how to configure your Shotgun
+See [Enabling Advanced Workflows](#enabling-advanced-workflows) for details on how to configure your Shotgrid
 site to take advantage of these workflows.
 
 ## Metadata
-When you publish your recordings to Shotgun, Unity embeds the current project path 
+When you publish your recordings to Shotgrid, Unity embeds the current project path 
 and the scene asset path in the created Version entity `sg_unity_metadata` field:
 
 <img src="images/metadata.png" style="border: 1px solid black"/>
 
-This allows Shotgun to start in the right context (right project, 
+This allows Shotgrid to start in the right context (right project, 
 right scene) when launched from a Version or Note entity.
 
 ### Launching from a Version entity
@@ -42,10 +42,10 @@ If there is no matching Unity project, then the Unity Hub will
 be launched instead.
 
 ### Jump to Frame
-You can use the Shotgun Panel to automatically select the right Timeline, on the
-frame associated with a Shotgun Note. In order to do so:
+You can use the Shotgrid Panel to automatically select the right Timeline, on the
+frame associated with a Shotgrid Note. In order to do so:
 
-1. Select `Shotgun Panel...` in the `Shotgun` menu
+1. Select `Shotgrid Panel...` in the `Shotgrid` menu
 2. Click on the `Notes` tab and select the Note
 3. Click the arrow displayed in the top-right corner of the selected Note
 4. Click on `Jump to Frame`
@@ -58,7 +58,7 @@ exist a Main Timeline in the scene.
 (see [Establishing the Main Timeline](#establishing-the-main-timeline)).
 
 When successful, the Main Timeline will be selected, and its frame will be set 
-to the value reflected by the Shotgun Note entity.
+to the value reflected by the Shotgrid Note entity.
 
 <img src="images/jump_to_frame_focused_main.png" style="border: 1px solid black"/>
 
@@ -79,15 +79,15 @@ To tag a Game Object, select it and choose `MainTimeline` in the list of tags
 You can use the `Add Tag...` menu item in the list of tags to add the 
 `MainTimeline` tag to the list if it is not present.
 
-The tag name can be configured in the Shotgun Panel settings, for the current
+The tag name can be configured in the Shotgrid Panel settings, for the current
 environment. `tk-config-unity` sets this value in 
-`env/includes/settings/tk-multi-shotgunpanel.yml`: 
+`env/includes/settings/tk-multi-Shotgridpanel.yml`: 
 
 <img src="images/main_timeline_setting.png" style="border: 1px solid black"/>
 
 ## Enabling Advanced Workflows
 Unity uses a custom Version entity field named `sg_unity_metadata` in order to
-save metadata that is used in advanced workflows. Your Shotgun site administrator
+save metadata that is used in advanced workflows. Your Shotgrid site administrator
 needs to add this custom field:
 
 1. As an administrator, go to the Versions page

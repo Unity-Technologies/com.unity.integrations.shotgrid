@@ -1,10 +1,10 @@
 {
-    "name": "ShotgunTests",
+    "name": "ShotgridTests",
     "references": [
         "Unity.Scripting.Python.Editor",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Unity.Integrations.Shotgun"
+        "Unity.Integrations.Shotgrid"
     ],
     "includePlatforms": [
         "Editor"

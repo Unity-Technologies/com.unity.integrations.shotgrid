@@ -4,10 +4,10 @@ using System.IO;
 using UnityEditor.PackageManager;
 using UnityEditor.Scripting.Python;
 
-namespace UnityEditor.Integrations.Shotgun
+namespace UnityEditor.Integrations.Shotgrid
 {
     /// <summary>
-    /// This class provides constants that are used throughout the Shotgun 
+    /// This class provides constants that are used throughout the Shotgrid
     /// integration.
     /// </summary>
     public static class Constants
@@ -15,35 +15,35 @@ namespace UnityEditor.Integrations.Shotgun
         /// <summary>
         /// The name of the package.
         /// </summary>
-        public const string packageName = "com.unity.integrations.shotgun";
+        public const string packageName = "com.unity.integrations.shotgrid";
         /// <summary>
-        /// The shotgun bootstrap module filename.
+        /// The shotgrid bootstrap module filename.
         /// </summary>
-        public const string shotgunBootstrapModule = "sg_bootstrap.py";
+        public const string shotgridBootstrapModule = "sg_bootstrap.py";
     }
 
     /// <summary>
-    /// Manages initialization and termination of the Shotgun integration.
-    /// Also manages the Shotgun Python bootstrap lifecycle.
+    /// Manages initialization and termination of the Shotgrid integration.
+    /// Also manages the Shotgrid Python bootstrap lifecycle.
     /// </summary>
     public static class Bootstrap
     {
         // Will start the bootstrap process
         private static void DoBootstrap()
         {
-            if(!VerifyLaunchedFromShotgun())
+            if(!VerifyLaunchedFromShotgrid())
             {
                 return;
             }
 
             // Use the default bootstrap
-            string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION");
+            string bootstrapScript = System.Environment.GetEnvironmentVariable("SHOTGRID_UNITY_BOOTSTRAP_LOCATION");
             bootstrapScript      = bootstrapScript.Replace(@"\","/");
-
+            
             string bootstrapPath = Path.GetDirectoryName(bootstrapScript);
-            // Get PySide2 from the same place as Shotgun Desktop.
+            // Get PySide2 from the same place as Shotgrid Desktop.
             // If Python for Unity starts to ship with its own PySide2 then we should switch to using the built-in version.
-            string pysideLocation = System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_PYSIDE_LOCATION");
+            string pysideLocation = System.Environment.GetEnvironmentVariable("SHOTGRID_UNITY_PYSIDE_LOCATION");
             pysideLocation= pysideLocation.Replace(@"\","/");
             // add path to 'bootstrap' to sys path
             PythonRunner.EnsureInitialized();
@@ -61,17 +61,17 @@ namespace UnityEditor.Integrations.Shotgun
             }
 
 
-            bootstrapPath = Path.Combine(bootstrapPath, Constants.shotgunBootstrapModule);
+            bootstrapPath = Path.Combine(bootstrapPath, Constants.shotgridBootstrapModule);
             PythonRunner.RunFile(bootstrapPath, "__main__");
-            //Subscribe to Package Manager API and remove Shotgun Asset when SG package is uninstalled
+            //Subscribe to Package Manager API and remove Shotgrid Asset when SG package is uninstalled
             //Packman API implemented for unity v2020.3 and higher
 #if UNITY_2020_3_OR_NEWER 
             UnityEditor.PackageManager.Events.registeringPackages += (PackageRegistrationEventArgs args) => {
                 foreach ( var info in args.removed )
                 {
-                    if(info.assetPath == "Packages/com.unity.integrations.shotgun")
+                    if(info.assetPath == "Packages/com.unity.integrations.shotgrid")
                     {
-                        DeleteShotgunAssetDir();
+                        DeleteShotgridAssetDir();
                     }
                 }
             };
@@ -99,7 +99,7 @@ namespace UnityEditor.Integrations.Shotgun
             // package and engine versions are compatible (matching Major and 
             // Minor version numbers)
             string tkUnityVersionString = "";
-            string packageVersionString = PackageManager.PackageInfo.FindForAssetPath($"Packages/{Constants.packageName}/Editor/Shotgun.cs").version;
+            string packageVersionString = PackageManager.PackageInfo.FindForAssetPath($"Packages/{Constants.packageName}/Editor/Shotgrid.cs").version;
 
             PythonRunner.EnsureInitialized();
             using (Py.GIL())
@@ -137,7 +137,7 @@ namespace UnityEditor.Integrations.Shotgun
             } 
             catch (Exception)
             {
-                UnityEngine.Debug.LogWarning($"Cannot determine the version number for tk-unity ({tkUnityVersionString}). Some Shotgun features might not function properly");
+                UnityEngine.Debug.LogWarning($"Cannot determine the version number for tk-unity ({tkUnityVersionString}). Some Shotgrid features might not function properly");
             }
 
             try 
@@ -146,7 +146,7 @@ namespace UnityEditor.Integrations.Shotgun
             } 
             catch (Exception)
             {
-                UnityEngine.Debug.LogWarning($"Cannot determine the version number for {Constants.packageName} ({packageVersionString}). Some Shotgun features might not function properly");
+                UnityEngine.Debug.LogWarning($"Cannot determine the version number for {Constants.packageName} ({packageVersionString}). Some Shotgrid features might not function properly");
             }
 
             if (tkUnityVersion != null && packageVersion != null)
@@ -156,7 +156,7 @@ namespace UnityEditor.Integrations.Shotgun
                 if (tkUnityVersion.Major != packageVersion.Major || 
                     tkUnityVersion.Minor != packageVersion.Minor)
                 {
-                    UnityEngine.Debug.LogWarning($"The tk-unity engine version ({tkUnityVersionString}) is not compatible with the Shotgun package version ({packageVersionString}). Some Shotgun features might not function properly");
+                    UnityEngine.Debug.LogWarning($"The tk-unity engine version ({tkUnityVersionString}) is not compatible with the Shotgrid package version ({packageVersionString}). Some Shotgrid features might not function properly");
                 }
             }
         }
@@ -164,7 +164,7 @@ namespace UnityEditor.Integrations.Shotgun
         internal static void CallPostInitHook()
         {
             // Start by refreshing the Asset Database so Unity catches the 
-            // Shotgun menu items that were generated while bootstraping
+            // Shotgrid menu items that were generated while bootstraping
             AssetDatabase.Refresh();
 
             PythonRunner.EnsureInitialized();
@@ -176,20 +176,20 @@ namespace UnityEditor.Integrations.Shotgun
         }
 
         /// <summary>
-        /// Checks if Unity was launched from Shotgun. If not, issues a 
-        /// warning and removes the Assets/Shotgun directory
+        /// Checks if Unity was launched from Shotgrid. If not, issues a 
+        /// warning and removes the Assets/Shotgrid directory
         /// 
-        /// Returns true if Shotgun is present, false otherwise
+        /// Returns true if Shotgrid is present, false otherwise
         /// </summary>
-        internal static bool VerifyLaunchedFromShotgun()
+        internal static bool VerifyLaunchedFromShotgrid()
         {
-            if (System.Environment.GetEnvironmentVariable("SHOTGUN_UNITY_BOOTSTRAP_LOCATION") == null)
+            if (System.Environment.GetEnvironmentVariable("SHOTGRID_UNITY_BOOTSTRAP_LOCATION") == null)
             {
-                // Unity was not lauched from Shotgun. Log warning and exit early
-                UnityEngine.Debug.LogWarning("The Shotgun package is present in the project but Unity was not launched from Shotgun. Shotgun features will not be available.");
+                // Unity was not lauched from Shotgrid. Log warning and exit early
+                UnityEngine.Debug.LogWarning("The Shotgrid package is present in the project but Unity was not launched from Shotgrid. Shotgrid features will not be available.");
 
-                // Remove the Shotgun menu
-                DeleteShotgunAssetDir();
+                // Remove the Shotgrid menu
+                DeleteShotgridAssetDir();
                 AssetDatabase.Refresh();
                 return false;
             }
@@ -197,7 +197,7 @@ namespace UnityEditor.Integrations.Shotgun
         }
 
         /// <summary>
-        /// Bootstraps Shotgun when the domain is loaded
+        /// Bootstraps Shotgrid when the domain is loaded
         /// </summary>
         [InitializeOnLoadMethod]
         private static void OnReload()
@@ -209,26 +209,26 @@ namespace UnityEditor.Integrations.Shotgun
             EditorApplication.delayCall += DoBootstrap;
             
             // Install our clean-up callback
-            EditorApplication.quitting += DeleteShotgunAssetDir;
+            EditorApplication.quitting += DeleteShotgridAssetDir;
         }
 
         /// <summary>
-        /// Tries to remove Assets/Shotgun
+        /// Tries to remove Assets/Shotgrid
         /// </summary>
-        private static void DeleteShotgunAssetDir()
+        private static void DeleteShotgridAssetDir()
         {
-            string shotgunAssetPath = UnityEngine.Application.dataPath + "/Shotgun";
-            string shotgunAssetMetaPath = UnityEngine.Application.dataPath + "/Shotgun.meta";
-            if (Directory.Exists(shotgunAssetPath))
+            string shotgridAssetPath = UnityEngine.Application.dataPath + "/Shotgrid";
+            string shotgridAssetMetaPath = UnityEngine.Application.dataPath + "/Shotgrid.meta";
+            if (Directory.Exists(shotgridAssetPath))
             {
                 try
                 {
-                    Directory.Delete(shotgunAssetPath, true);
-                    File.Delete(shotgunAssetMetaPath);
+                    Directory.Delete(shotgridAssetPath, true);
+                    File.Delete(shotgridAssetMetaPath);
                 }
                 catch (IOException)
                 {
-                    UnityEngine.Debug.LogWarning(string.Format("Could not delete the Shotgun Asset Directory located at {0}",shotgunAssetPath));
+                    UnityEngine.Debug.LogWarning(string.Format("Could not delete the Shotgrid Asset Directory located at {0}",shotgridAssetPath));
                 }
             }
         }

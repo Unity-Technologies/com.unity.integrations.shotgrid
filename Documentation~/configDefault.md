@@ -9,7 +9,7 @@
       path: '{CONFIG_FOLDER}/tk-unity'
     ```
 
-    This assumes that the tk-unity engine is located in a directory named tk-unity at the root of the configuration. Other descriptors will also work, as [documented online](https://developer.shotgunsoftware.com/tk-core/descriptor.html).
+    This assumes that the tk-unity engine is located in a directory named tk-unity at the root of the configuration. Other descriptors will also work, as [documented online](https://developer.shotgridsoftware.com/tk-core/descriptor.html).
 
 3. Edit env/project.yml
 
@@ -50,8 +50,8 @@
 
         tk-multi-loader2: "@settings.tk-multi-loader2.unity"
 
-        tk-multi-shotgunpanel:
-          location: "@apps.tk-multi-shotgunpanel.location"
+        tk-multi-shotgridpanel:
+          location: "@apps.tk-multi-shotgridpanel.location"
 
         tk-multi-pythonconsole:
           location: "@apps.tk-multi-pythonconsole.location"
@@ -75,7 +75,7 @@
       help_url: https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher
       collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
       publish_plugins:
-      - name: Publish to Shotgun
+      - name: Publish to Shotgrid
         hook: "{self}/publish_file.py"
         settings: {}
       - name: Upload for review
