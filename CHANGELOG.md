@@ -8,7 +8,7 @@ INCOMPATIBLE CHANGES:
 
 FIXES and IMPROVEMENTS:
 * Rebrand to ShotGrid
-* You no longer need to kill the Unity Hub when launching from Shotgrid Desktop.
+* it is no longer necessary to kill the Unity Hub when launching from Shotgrid Desktop.
 * There are no longer any additional client installation steps beyond adding the com.unity.integrations.shotrid package within Unity.
 * Uninstalling the package removes Shotgrid assets added to the project.
 
