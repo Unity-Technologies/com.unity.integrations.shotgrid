@@ -1,6 +1,13 @@
-# Changes in Shotgun for Unity
+# Changes in Shotgrid for Unity
 
 RELEASE NOTES
+## [1.2.0-exp.1] - 2021-07-07
+This version requires:
+* tk-unity v1.2
+* tk-config-unity v1.3.19.2
+
+NEW FEATURES
+* Rebrand from Shotgun to Shotgrid
 
 ## [1.1.0-exp.1] - 2021-06-07
 INCOMPATIBLE CHANGES:

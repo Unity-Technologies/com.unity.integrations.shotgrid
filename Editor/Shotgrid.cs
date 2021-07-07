@@ -119,10 +119,10 @@ namespace UnityEditor.Integrations.Shotgrid
             }
             
             // Remove everything after "preview" in the package string
-            // Version numbers have this form: "X.Y.Z[-preview][.W]", 
-            // e.g "0.9.0-preview.1", "1.0.1-preview", "2.0.3".
+            // Version numbers have this form: "X.Y.Z[-exp][.W]", 
+            // e.g "0.9.0-exp.1", "1.0.1-exp", "2.0.3".
             // We want to extract "X.Y.Z"
-            index = packageVersionString.IndexOf("preview");
+            index = packageVersionString.IndexOf("exp");
             if (index > 0)
             {
                 packageVersionString = packageVersionString.Substring(0, index-1);
