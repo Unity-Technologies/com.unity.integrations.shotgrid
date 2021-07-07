@@ -5,6 +5,8 @@ pipeline configuration in the table below:
 | tk-config-unity version | tk-unity version | com.unity.integrations.shotgrid version |
 | :---------------------- | :--------------- | :-------------------------------------- |
 | 1.3.19.2                | 1.2              | 1.2.0                                   |
+
+
    
 Shotgrid should automatically initialize on Unity startup if you launched Unity 
 from Shotgrid. You should see a progress bar reporting the Shotgrid toolkit 
