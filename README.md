@@ -11,7 +11,7 @@ Related repositories include:
 * [`tk-unity`](https://github.com/Unity-Technologies/tk-unity) provides the engine description for Shotgrid
 * [`tk-config-unity`](https://github.com/Unity-Technologies/tk-config-unity) is a sample pipeline config that includes Unity support
 
-Please be aware that the use of this package requires a [Shotgrid](https://www.shotgrid software.com/) account and
+Please be aware that the use of this package requires a [Shotgrid](https://www.shotgridsoftware.com/) account and
 acceptance of Autodesk's terms and conditions.
 
 [Contributions](CONTRIBUTING.md) are welcome.
