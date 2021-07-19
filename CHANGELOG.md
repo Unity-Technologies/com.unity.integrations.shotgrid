@@ -1,12 +1,8 @@
 # Changes in Shotgrid for Unity
 
 RELEASE NOTES
-## [1.1.0-exp.2] - 2021-07-19
-FIXES:
-* warning for undetectable version number fixed.
-* File name changes Shotgrid rebrand
 
-## [1.1.0-exp.1] - 2021-06-22
+## [1.1.0-exp.2] - 2021-07-19
 INCOMPATIBLE CHANGES:
 * Rebrand to Shotgrid
 * Updated to Python 3.7. Your scripts will need to be ported.
