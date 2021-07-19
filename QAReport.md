@@ -1,6 +1,6 @@
 # Quality Report
 
-## Version tested: [1.1.0-exp.1]
+## Version tested: [1.1.0-exp.2]
 
 ## QA Owner: Mojibola Obadimeji
 ## UX Owner: David Lassonde

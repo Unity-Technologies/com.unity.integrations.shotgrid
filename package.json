@@ -1,7 +1,7 @@
 {
     "name": "com.unity.integrations.shotgrid",
     "displayName" : "Shotgrid for Unity",
-    "version" : "1.1.0-exp.1",
+    "version" : "1.1.0-exp.2",
     "dependencies" : { "com.unity.scripting.python" : "4.0.0-exp.5", "com.unity.recorder": "2.5.5" },
     "unity": "2019.4",
     "description" : "This package enables Unity to work with Shotgrid and use Shotgrid toolkit applications.",
