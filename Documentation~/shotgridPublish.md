@@ -8,7 +8,7 @@ Before starting make sure your scene and Timeline are setup for recording the pl
 
 1. Open the Recorder window by selecting Window > General > Recorder > Recorder Window
 
-2. Add a new Movie Recorder. Make sure the Target Frame Rate value matches your Master Timeline settings. To learn more about the concept of Master timeline, see [Establishing the Master Timeline](advancedWorkflows.html#establishing-the-master-timeline).
+2. Add a new Movie Recorder. Make sure the Target Frame Rate value matches your Master Timeline settings. To learn more about the concept of Master timeline, see [Establishing the Master Timeline](advancedWorkflows.md#establishing-the-master-timeline).
 
 ![Publish to Shotgrid Checkbox](images/unity_recorder.png)
 
