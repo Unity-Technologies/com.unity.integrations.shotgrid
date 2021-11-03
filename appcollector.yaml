@@ -1,0 +1,19 @@
+application_name: com.unity.integrations.shotgrid
+application_type: Package
+language: C#
+development_stage: Production
+findings_access:
+- markv@unity3d.com
+- marief@unity3d.com
+organization: 5d8b8596cadf01000a30db1f
+poc: marief@unity3d.com
+slack_channel: devs-shotgrid
+description: This package enables Unity to work with Shotgrid and use Shotgrid toolkit applications.
+risk_assessment:
+  internet_facing: false
+  personal_info: false
+  payment_info: false
+  authentication: No Authentication
+  hosting: N/A
+  revenue_impact: false
+  pci: false
