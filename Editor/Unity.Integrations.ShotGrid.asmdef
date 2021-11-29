@@ -1,5 +1,5 @@
 {
-    "name": "Unity.Integrations.Shotgrid",
+    "name": "Unity.Integrations.ShotGrid",
     "references": [
         "Unity.Scripting.Python.Editor",
         "Unity.Recorder.Editor"

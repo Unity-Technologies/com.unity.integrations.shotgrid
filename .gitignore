@@ -58,3 +58,9 @@ Shotgun/ValidationSuiteResults
 
 # npm
 .npmignore
+
+# macOS
+.DS_Store
+
+# JetBrains
+.idea

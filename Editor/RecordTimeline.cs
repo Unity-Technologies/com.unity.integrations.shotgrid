@@ -5,7 +5,7 @@ using UnityEditor.Recorder;
 using UnityEngine;
 using UnityEditor.Scripting.Python;
 
-namespace UnityEditor.Integrations.Shotgrid
+namespace UnityEditor.Integrations.ShotGrid
 {
     internal static class RecordTimeline
     {
@@ -24,10 +24,10 @@ namespace UnityEditor.Integrations.Shotgrid
             }
         }
 
-        [MenuItem("Shotgrid/Publish Recording...")]
+        [MenuItem("ShotGrid/Publish Recording...")]
         private static void Record()
         {
-            if (!Bootstrap.VerifyLaunchedFromShotgrid())
+            if (!Bootstrap.VerifyLaunchedFromShotGrid())
             {
                 return;
             }
@@ -104,7 +104,7 @@ namespace UnityEditor.Integrations.Shotgrid
 
                 if (state == PlayModeStateChange.EnteredEditMode)
                 {
-                    // Publish with Shotgrid
+                    // Publish with ShotGrid
                     PythonRunner.EnsureInitialized();
                     using (Py.GIL())
                     {
@@ -179,7 +179,7 @@ namespace UnityEditor.Integrations.Shotgrid
             }
 
             // first try to get the selected item, if it's not a MovieRecorder,
-            // then go through the list and try to find one that is called "Shotgrid".
+            // then go through the list and try to find one that is called "ShotGrid".
             // if there isn't one then just take one of the MovieRecorders.
             var selectedRecorder = GetFieldValue("m_SelectedRecorderItem", recorderWindow);
             if (selectedRecorder != null)
@@ -207,7 +207,7 @@ namespace UnityEditor.Integrations.Shotgrid
 
                 var editableLabel = GetFieldValue("m_EditableLabel", item);
                 var labelText = (string)GetPropertyValue("text", editableLabel);
-                if (labelText.Equals("Shotgrid"))
+                if (labelText.Equals("ShotGrid"))
                 {
                     return movieRecorder;
                 }
