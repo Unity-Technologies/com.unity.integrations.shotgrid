@@ -8,6 +8,8 @@ INCOMPATIBLE CHANGES:
 
 FIXES and IMPROVEMENTS:
 * Fixed broken links in docs
+* Updated Python dependency to 4.0.0-pre.1
+* Updated Recorder dependency to 2.5.7
 
 ## [1.1.0-exp.2] - 2021-07-19
 INCOMPATIBLE CHANGES:
