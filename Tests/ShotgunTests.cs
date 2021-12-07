@@ -4,14 +4,14 @@ using System.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
 using UnityEditor;
-using UnityEditor.Integrations.Shotgrid;
+using UnityEditor.Integrations.ShotGrid;
 using UnityEditor.Scripting.Python;
 using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Tests
 {
-    internal class ShotgridTests
+    internal class ShotGridTests
     {
         private const string testsPath = "Packages/" + Constants.packageName + "/Tests";      
         // In seconds

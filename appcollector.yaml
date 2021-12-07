@@ -8,7 +8,7 @@ findings_access:
 organization: 5d8b8596cadf01000a30db1f
 poc: marief@unity3d.com
 slack_channel: devs-shotgrid
-description: This package enables Unity to work with Shotgrid and use Shotgrid toolkit applications.
+description: This package enables Unity to work with ShotGrid and use ShotGrid toolkit applications.
 risk_assessment:
   internet_facing: false
   personal_info: false

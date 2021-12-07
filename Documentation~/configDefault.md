@@ -72,10 +72,10 @@
 6. Add the following to env/includes/settings/tk-multi-publish2.yml:
     ```
     settings.tk-multi-publish2.unity:
-      help_url: https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher
+      help_url: https://help.autodesk.com/view/SGSUB/ENU/?guid=SG_Supervisor_Artist_sa_integrations_sa_integrations_user_guide_html#the-publisher
       collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
       publish_plugins:
-      - name: Publish to Shotgrid
+      - name: Publish to ShotGrid
         hook: "{self}/publish_file.py"
         settings: {}
       - name: Upload for review
