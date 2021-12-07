@@ -15,7 +15,9 @@
 #
 editors:
   - version: 2019.4
-  - version: 2020.1
+  - version: 2020.3
+  - version: 2021.2
+  - version: trunk
 platforms:
   - name: win
     type: Unity::VM
@@ -30,7 +32,7 @@ platforms:
 #    image: package-ci/ubuntu:stable
 #    flavor: b1.medium
 promote_platform:
-  version: 2019.4
+  version: 2020.3
   name: win
   type: Unity::VM
   image: package-ci/win10:stable
