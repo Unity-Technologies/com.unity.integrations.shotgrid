@@ -56,5 +56,8 @@ Shotgun/Assets/Shotgun
 Shotgun/Logs/Packages-Update.log
 Shotgun/ValidationSuiteResults
 
-# npm
-.npmignore
+# macOS
+.DS_Store
+
+# JetBrains
+.idea

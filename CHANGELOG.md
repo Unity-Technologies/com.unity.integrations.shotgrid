@@ -1,17 +1,21 @@
-# Changes in Shotgrid for Unity
+# Changes in ShotGrid for Unity
 
 RELEASE NOTES
 
+## [Unreleased]
+INCOMPATIBLE CHANGES:
+* Renamed Shotgrid to ShotGrid
+
 ## [1.1.0-exp.2] - 2021-07-19
 INCOMPATIBLE CHANGES:
-* Rebrand to Shotgrid
+* Rebrand to ShotGrid
 * Updated to Python 3.7. Your scripts will need to be ported.
 * Updated to Python for Unity 4.0. The out of process API no longer exists, instead we can safely run Python within the Unity main thread. This should simplify new development but will require adapting scripts written for the prior version.
 
 FIXES and IMPROVEMENTS:
-* it is no longer necessary to kill the Unity Hub when launching from Shotgrid Desktop.
+* it is no longer necessary to kill the Unity Hub when launching from ShotGrid Desktop.
 * There are no longer any additional client installation steps beyond adding the com.unity.integrations.shotgrid package within Unity.
-* Uninstalling the package removes Shotgrid assets added to the project.
+* Uninstalling the package removes ShotGrid assets added to the project.
 
 ## [0.10.0-preview.1] - 2020-07-03
 FIXES
