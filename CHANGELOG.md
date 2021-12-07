@@ -2,7 +2,7 @@
 
 RELEASE NOTES
 
-## [1.0.0-exp.3] - 2021-12-07
+## [1.1.0-exp.3] - 2021-12-07
 INCOMPATIBLE CHANGES:
 * Renamed Shotgrid to ShotGrid
 
