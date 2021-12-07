@@ -5,6 +5,8 @@ RELEASE NOTES
 ## [Unreleased]
 INCOMPATIBLE CHANGES:
 * Renamed Shotgrid to ShotGrid
+
+FIXES and IMPROVEMENTS:
 * Fixed broken links in docs
 
 ## [1.1.0-exp.2] - 2021-07-19
