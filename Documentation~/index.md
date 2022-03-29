@@ -1,6 +1,6 @@
 # System Requirements
 
-- Windows 10+ or macOS High Sierra 10.13+, 64-bit versions only
+- Windows 10+ 64-bit
 
 - We recommend installing the latest version of Unity 2021.2 LTS via the Unity Hub; [2020.2](https://unity3d.com/get-unity/download) is the minimum.
 
