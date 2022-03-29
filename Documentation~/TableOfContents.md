@@ -1,5 +1,6 @@
 * [ShotGrid Integration](index.md)
-* [Setup](installPython.md)
+* Setup:
+    * [Clean previous ShotGrid Desktop installation](cleanShotGrid.md)
     * [Install ShotGrid Desktop](shotGridDesktop.md)
     * [ShotGrid Configuration](shotGridConfig.md)
     * [Enabling Toolkit and Unity for your ShotGrid Project](enablingToolkit.md)

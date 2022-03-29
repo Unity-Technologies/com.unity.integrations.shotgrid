@@ -19,7 +19,6 @@ ShotGrid projects need to be configured to use toolkit applications.
     ![Advanced Project Setup](images/advanced_project_setup.png)
     Follow the steps
 
-**Note:** if your new settings aren't taken into account, clear the ShotGrid
-Desktop cache. To do so, exit ShotGrid Desktop and remove the `%APPDATA%\Shotgun`
-directory.
 
+**Note:** if your new settings aren't taken into account, clear the ShotGrid
+Desktop cache: [Clear ShotGrid Desktop cache](cleanShotGrid.md)
