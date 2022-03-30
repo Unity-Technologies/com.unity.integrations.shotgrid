@@ -1,4 +1,8 @@
-We recommend installing the latest version of Unity 2020 LTS via the Unity Hub; [2019.3](https://unity3d.com/get-unity/download) is the minimum.
+# System Requirements
+
+- Windows 10+ 64-bit
+
+- We recommend installing the latest version of Unity 2021.2 LTS via the Unity Hub; [2020.2](https://unity3d.com/get-unity/download) is the minimum.
 
 In case you're new to ShotGrid, check out its [features page](https://www.shotgridsoftware.com/features/) and [Help Center](https://help.autodesk.com/view/SGSUB/ENU/) as a starting point.
 

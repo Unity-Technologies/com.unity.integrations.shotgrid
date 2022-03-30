@@ -8,8 +8,8 @@ with ShotGrid inside of Unity.
 If you are using a custom configuration, it should be straightforward to adapt
 it to also use `tk-unity`. The recommended approach is to compare 
 `tk-unity-config` with its matching `tk-config-default2` version. For example, 
-you could compare `tk-config-unity` v1.2.9.1 with `tk-config-default2` 
-v1.2.9.1 and add the required changes.
+you could compare `tk-config-unity` v1.3.19.1 with `tk-config-default2` 
+v1.3.19.1 and add the required changes.
 
 To use `tk-config-unity`, follow these steps: 
 
@@ -19,7 +19,7 @@ To use `tk-config-unity`, follow these steps:
     ![Create Pipeline Configuration](images/create_pipeline_config.png) 
     * Set the `Plugin Ids` field to `basic.*`
     * Set the `Descriptor` field to match the desired version of the config, 
-    e.g. `sgtk:descriptor:github_release?organization=Unity-Technologies&repository=tk-config-unity&version=v1.2.9.1`
+    e.g. `sgtk:descriptor:github_release?organization=Unity-Technologies&repository=tk-config-unity&version=v1.3.19.1`
 3. Launch ShotGrid Desktop 
 4. Choose your project 
 5. In the top section, if there is an arrow, click it and choose your new configuration 
