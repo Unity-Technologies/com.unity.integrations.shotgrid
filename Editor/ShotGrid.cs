@@ -43,8 +43,8 @@ namespace UnityEditor.Integrations.ShotGrid
             string bootstrapPath = Path.GetDirectoryName(bootstrapScript);
             // Get PySide2 from the same place as ShotGrid Desktop.
             // If Python for Unity starts to ship with its own PySide2 then we should switch to using the built-in version.
-            string pysideLocation = System.Environment.GetEnvironmentVariable("SHOTGRID_UNITY_PYSIDE_LOCATION");
-            pysideLocation= pysideLocation.Replace(@"\","/");
+            // string pysideLocation = System.Environment.GetEnvironmentVariable("SHOTGRID_UNITY_PYSIDE_LOCATION");
+            // pysideLocation= pysideLocation.Replace(@"\","/");
             // add path to 'bootstrap' to sys path
             PythonRunner.EnsureInitialized();
             using (Py.GIL())
@@ -55,7 +55,7 @@ namespace UnityEditor.Integrations.ShotGrid
                 dynamic syspath = sys.GetAttr("path");
                 dynamic pySitePackages = builtins.list();
                 pySitePackages.append(bootstrapPath);
-                pySitePackages.append(pysideLocation);
+                // pySitePackages.append(pysideLocation);
                 pySitePackages += syspath;
                 sys.SetAttr("path", pySitePackages);
             }
